@@ -1,0 +1,72 @@
+
+/* Tablet Layout: 768px. */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.carousel-item {
+  height: 500px;
+}
+.carousel-item > img {
+
+  height: 500px;
+}
+
+.carousel-caption {
+  bottom: 2rem;
+
+}
+
+.carousel-caption h1{
+
+    font-size: 40px;
+    line-height: 1em;
+}
+
+.carousel-caption p{font-size:18px; }
+
+}
+
+
+
+/* Mobile Layout: 320px. */
+
+/*FB.COM/Root.Riad*/
+
+@media only screen and (max-width: 767px) {
+.carousel-item {
+  height: 350px;
+}
+.carousel-item > img {
+
+  height: 350px;
+}
+
+.carousel-caption {
+  bottom: 1rem;
+
+}
+.carousel-caption h1{
+
+    font-size: 14px;
+    line-height: 1em;
+}
+
+.carousel-caption p{font-size:10px; }
+.btn-group-lg>.btn, .btn-lg{font-size: 12px;}
+.navbar{padding: 5px 10px 0px 10px;}
+
+.intro h2 {
+    font-size: 18px;
+}
+
+.paralaxOne h2{font-size: 35px;}
+
+}
+
+
+/* Wide Mobile Layout: 480px. */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+

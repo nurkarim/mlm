@@ -1,0 +1,238 @@
+.alert {
+    z-index: 999999;
+}
+
+.custom-alert {
+    position: fixed;
+    top: 0;
+    right: 16px;
+    width: 500px;
+    padding-bottom: 12px !important;
+    border-radius: 0;
+    color: #fff;
+}
+
+.alert-success {
+    background: rgba(31, 39, 101, 0.91) !important;
+    border: 0 !important;
+
+}
+
+.alert-danger {
+    background: rgba(195, 15, 12, 0.8) !important;
+    border: 0 !important;
+
+}
+
+.alert-warning {
+    background: rgba(243, 156, 18, 0.8) !important;
+    border: 0 !important;
+
+}
+
+.custom-alert .close {
+    color: #fff;
+    opacity: 0.8;
+}
+
+.btn-primary {
+    background-color: #605ca8;
+    border-color: #605ca8
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary.hover {
+    background-color: #555299 !important;
+}
+
+label.error {
+    color: red;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.chosen-container .chosen-results li.highlighted {
+    background-color: #605ca8 !important;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+/* Drag and drop table */
+.showDragHandle{
+    background: rgba(69, 73, 202, 0.05) !important;
+}
+.datepicker table tr td.active.active {
+    background-color: #605ca8 !important;
+    border-color: #605ca8 !important;
+}
+
+/* Responsive table */
+@media only screen and (max-width: 800px) {
+    /* Force table to not be like tables anymore */
+    #no-more-tables table,
+    #no-more-tables thead,
+    #no-more-tables tbody,
+    #no-more-tables th,
+    #no-more-tables td,
+    #no-more-tables tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #no-more-tables thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #no-more-tables tr {
+        border: 1px solid #f1f1f1;
+    }
+
+    #no-more-tables td {
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #f1f1f1;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+    }
+
+    #no-more-tables td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    /*
+    Label the data
+    */
+    #no-more-tables td:before {
+        content: attr(data-title);
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    /* Force table to not be like tables anymore */
+    #no-more-tables1 table,
+    #no-more-tables1 thead,
+    #no-more-tables1 tbody,
+    #no-more-tables1 th,
+    #no-more-tables1 td,
+    #no-more-tables1 tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #no-more-tables1 thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #no-more-tables1 tr {
+        border: 1px solid #f1f1f1;
+    }
+
+    #no-more-tables1 td {
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #f1f1f1;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+    }
+
+    #no-more-tables1 td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    /*
+    Label the data
+    */
+    #no-more-tables1 td:before {
+        content: attr(data-title);
+    }
+}
+/* removing padding from admission form*/
+.form-horizontal .form-group{
+    margin-right:0px;
+    margin-left:0px;
+}
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover,
+.paginate_button >a
+{
+    background-color: #605ca8;
+    border-color: #605ca8;
+    border-radius: 100%;
+    margin: 0 5px !important;
+}
+#datatable_next a,
+#datatable_previous a,
+#datatable_previous a:focus,
+#datatable_next a:focus{
+    border-radius: 0 !important;
+    border:0;
+    background: transparent;
+    margin: 0 5px !important;
+    color: #333;
+}
+.nav-tabs-custom>.nav-tabs>li.active{
+    border-top-color: #605ca8;
+}
+hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.mt-0{
+    margin-top: 0 !important;
+}
+.mt-15{
+    margin-top: 15px !important;
+}
+.pt-0{
+    padding-top: 0 !important;
+}
+.ml--20{
+    margin-left: -20px !important;
+}
+.bt-0{
+    border-top: 0 !important;
+}
+.box.box-primary{
+    border-top-color:#605ca8;
+}
+.empty-content-student-profile{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
