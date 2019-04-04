@@ -16,6 +16,10 @@ Route::get('checkUserName', 'DiscountConytroller@checkUserName')->name('userName
 // ===================Ebooks================
 Route::resource('ebooks', 'EbookController');
 Route::post('ebooksDelete', 'EbookController@delete')->name('ebooks.delete');
+// ===================Members================
+
+Route::resource('members', 'MemberController');
+Route::get('inactiveMemebrs', 'MemberController@inActiveUser')->name('members.inactive');
 
 
 });

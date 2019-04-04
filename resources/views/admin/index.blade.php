@@ -147,6 +147,7 @@
     });
     $(document).ready(function() {
         $('#datatable').DataTable();
+        $('.datatable').DataTable();
     } );
 </script>
 @yield('js')

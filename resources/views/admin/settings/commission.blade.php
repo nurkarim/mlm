@@ -10,7 +10,7 @@
 	<form class="" method="post" action="{{ route('commission.store') }}">
 		<div class="col-md-6">
 		@csrf
-		<?php $i=1; ?>
+		<?php $i=1; $percent=0; ?>
 		@for($i=1;$i<14;$i++)
 		<?php
 		$lebel="";
@@ -41,7 +41,7 @@
 		}elseif ($i==13) {
 			$lebel='13';
 		}
-		if ($collect) {
+		if (count($collect)>0) {
 			$comm=$collect->where('level_id',$i)->first();
 			$percent=$comm->percent;
 		}else{

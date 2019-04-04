@@ -13,8 +13,8 @@
       <i class="fa fa-angle-left pull-right"></i></span>
       </a>
       <ul class="treeview-menu">
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_1">Active Members</span></a></li>
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_1">Inactive Members</span></a></li>
+         <li><a href='{{ route('members.index') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_1">Active Members</span></a></li>
+         <li><a href='{{ route('members.inactive') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_1">Inactive Members</span></a></li>
       </ul>
    </li>
     <li>

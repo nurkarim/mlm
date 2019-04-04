@@ -16,8 +16,11 @@ class CreateAddFundsIntoWalletTable extends Migration
         Schema::create('add_funds_into_wallet', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->text('wallet_address')->nullable();
-            $table->text('strip_address')->nullable();
+            $table->integer('type')->default(1);
+            $table->text('coinbase_wallet_address')->nullable();
+            $table->text('coinbase_charge_id')->nullable();
+            $table->text('strip_details')->nullable();
+            $table->text('strip_charge_id')->nullable();
             $table->decimal('amount',8,2)->default(0);
             $table->decimal('fee',8,2)->default(0);
             $table->decimal('total',8,2)->default(0);

@@ -16,7 +16,7 @@ class CreateCommissionSettingsTable extends Migration
         Schema::create('commission_settings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('level_id')->default(0);
-            $table->decimal('percent',8,2)->default(0);
+            $table->string('percent')->default(0);
             $table->timestamps();
              $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
