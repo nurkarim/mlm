@@ -17,7 +17,7 @@ class DiscountConytroller extends Controller
 
     public function checkUserName(Request $request)
     {
-    	$user=User::where('user_name',$request->userName)->first();
+    	$user=User::where('user_name',$request->userName)->where('status',1)->first();
     	if ($user) {
     		return response()->json([
     			'status'=>true,

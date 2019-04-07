@@ -1,4 +1,5 @@
 <?php
+Route::get('usernameCheck', 'DiscountConytroller@checkUserName')->name('userNameCheck');
 
 Route::group(['middleware' => ['web','auth','adminAuth'],'prefix' => 'admin'], function() {
 // ===================Route Admin================

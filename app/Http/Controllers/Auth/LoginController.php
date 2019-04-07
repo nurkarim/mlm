@@ -12,14 +12,11 @@ use Redirect;
 class LoginController extends Controller
 {
 
-    use AuthenticatesUsers;
+   // use AuthenticatesUsers;
 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
+    
 
     public function login()
     {
@@ -47,5 +44,13 @@ class LoginController extends Controller
                 ->withInput($request->except('password'))
                 ->with('flash_notice', 'Your username/password combination was incorrect.');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+           return Redirect::to('login')
+                ->withInput($request->except('password'))
+                ->with('flash_notice', 'Logout successfully');
     }
 }

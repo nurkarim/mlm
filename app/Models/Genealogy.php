@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Wildside\Userstamps\Userstamps;
-class Transaction extends Model
+class Genealogy extends Model
 {
-	 use Userstamps;
-
+    use Userstamps;
      protected $guarded =['id'];
     
-     protected $table="transactions";
+    protected $table="genealogy";
 }

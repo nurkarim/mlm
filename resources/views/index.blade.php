@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('public/ui/css/animate.css') }}">
     <link href="{{ asset('public/ui/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('public/ui/css/responsive.css') }}" rel="stylesheet">
+        <script src="{{asset('public/theme1/js/jquery.min.js')}}"></script>
+
     <title>Infinite-Funds</title>
   </head>
 @include('_partials.nav')

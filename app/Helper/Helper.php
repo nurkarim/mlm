@@ -1,6 +1,6 @@
 <?php
 namespace App\Helper;
-
+use App\User;
 class Helper 
 {
 	
@@ -27,6 +27,13 @@ class Helper
         }
         return false;
     }
+
+    public static function members($id)
+    {
+        return $dd=User::where('placement_id',$id)->get();
+    }
+
+
     public static function countryList()
     {
         $country_array = array(
