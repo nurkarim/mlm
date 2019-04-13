@@ -17,7 +17,7 @@
           @csrf                                    <div class="form-group">
                                         <label for="email">Username</label>
                                         <div class="group-icon">
-                                        <input id="email" type="text"  placeholder="email" class="form-control email-text" required="" value="" name="email">
+                                        <input id="email" type="text"  placeholder="Enter username" class="form-control email-text" required="" value="" name="email">
                                         <span class="icon-user text-muted icon-input"></span>
                                         </div>
                                                                              </div>

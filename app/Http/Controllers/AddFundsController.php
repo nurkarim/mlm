@@ -14,7 +14,7 @@ use Redirect;
 use App\Models\AddFundsWallet;
 use Auth;
 use DB;
-use Coinbase;
+// use Coinbase;
 class AddFundsController extends Controller
 {
     public function create()
@@ -24,9 +24,9 @@ class AddFundsController extends Controller
 
     public function store(Request $request)
     {
-        $checkouts = Coinbase::getCheckouts();
-        print_r($checkouts);
-        return exit();
+        // $checkouts = Coinbase::getCheckouts();
+        // print_r($checkouts);
+
         try {
              DB::beginTransaction();
 
