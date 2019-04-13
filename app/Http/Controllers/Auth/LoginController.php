@@ -28,7 +28,7 @@ class LoginController extends Controller
         $remember = ($request->has('remember')) ? true : false;
         $auth = Auth::attempt(
             [
-                'email' => $request->get('email'),
+                'user_name' => $request->get('email'),
                 'password' => $request->get('password'),
             ], $remember
         );

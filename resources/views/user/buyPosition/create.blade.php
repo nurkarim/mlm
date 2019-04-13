@@ -44,7 +44,7 @@
 			<input type="text" name="placement_name" required="" class="form-control" value="{{ old('placement_name') }}">
 		</div>
        <div class="form-group">
-			<button class="btn btn-sm btn-primary">Buy Position</button>
+			<button type="submit" class="btn btn-sm btn-primary">Buy Position</button>
 		</div>
 		</div>
 		

@@ -18,7 +18,7 @@
       </a>
    </li>
    <li>
-      <a href='#'>
+      <a href='{{ route('addFunds.create') }}'>
       <img src="{{ asset('public/icons/add_funds.png') }}" class="icon" alt="dashboard">
       <span>Add Funds</span>
       </a>

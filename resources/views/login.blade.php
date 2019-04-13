@@ -15,16 +15,16 @@
                                
                                   <form role="form" method="POST" action="{{ route('login') }}">
           @csrf                                    <div class="form-group">
-                                        <label for="email">Email</label>
+                                        <label for="email">Username</label>
                                         <div class="group-icon">
-                                        <input id="email" type="email" autocomplete="off" placeholder="email" class="form-control email-text" required="" value="" name="email">
+                                        <input id="email" type="text"  placeholder="email" class="form-control email-text" required="" value="" name="email">
                                         <span class="icon-user text-muted icon-input"></span>
                                         </div>
                                                                              </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Password</label>
                                         <div class="group-icon">
-                                        <input id="exampleInputPassword1" autocomplete="off" type="password" placeholder="Password" class="form-control password-text" name="password" required="">
+                                        <input id="exampleInputPassword1" type="password" placeholder="Password" class="form-control password-text" name="password" required="">
                                         <span class="icon-lock text-muted icon-input"></span>
                                         </div>
                                                                               </div>

@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.1.3",
         "barryvdh/laravel-dompdf": "^0.8.4",
+        "coinbase/coinbase": "~2.0",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/cashier": "~7.0",
@@ -17,9 +18,9 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
         "maatwebsite/excel": "~2.1.0",
+        "shakurov/coinbase": "^0.7.6",
         "wildside/userstamps": "^0.5.5",
-        "yajra/laravel-datatables-oracle": "~9.0",
-        "coinbase/coinbase": "~2.0"
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

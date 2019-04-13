@@ -25,4 +25,5 @@ Route::group(['prefix' => 'dashboard'], function() {
     // ================================Buying Position================================
     Route::get('position/purchase', 'UserController@create')->name('position.create');
     Route::post('position/purchase', 'UserController@store')->name('position.post');
+    Route::resource('addFunds', 'AddFundsController');
 });

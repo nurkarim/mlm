@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "960223b44d60b1dc6654b10516c65292",
+    "content-hash": "1fff4336ce5dfe52be400bedef3c0d75",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -2289,6 +2289,62 @@
                 "stylesheet"
             ],
             "time": "2016-07-19T19:14:21+00:00"
+        },
+        {
+            "name": "shakurov/coinbase",
+            "version": "v0.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shakurov/laravel-coinbase.git",
+                "reference": "2eb144c34afc2d60953287bd37bd6c1c07230eb4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shakurov/laravel-coinbase/zipball/2eb144c34afc2d60953287bd37bd6c1c07230eb4",
+                "reference": "2eb144c34afc2d60953287bd37bd6c1c07230eb4",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Shakurov\\Coinbase\\CoinbaseServiceProvider"
+                    ],
+                    "aliases": {
+                        "Coinbase": "Shakurov\\Coinbase\\Facades\\Coinbase"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Shakurov\\Coinbase\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir Shakurov",
+                    "email": "vladimir@shakurov.com"
+                }
+            ],
+            "description": "Laravel wrapper for the Coinbase Commerce API",
+            "keywords": [
+                "coinbase",
+                "coinbase commerce",
+                "laravel",
+                "laravel 5"
+            ],
+            "time": "2019-02-27T17:21:51+00:00"
         },
         {
             "name": "stripe/stripe-php",

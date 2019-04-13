@@ -8,5 +8,6 @@ class AddFundsWallet extends Model
 {
     
     use Userstamps;
+    protected $guarded =['id'];
     protected $table="add_funds_into_wallet";
 }
