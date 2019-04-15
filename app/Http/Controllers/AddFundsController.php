@@ -12,9 +12,15 @@ use Coinbase\Wallet\Value\Money;
 // use App\Helper\Coinbase;
 use Redirect;
 use App\Models\AddFundsWallet;
+// use App\Models\Transaction;
 use Auth;
 use DB;
-// use Coinbase;
+use App\User;
+use Coinbase;
+use CoinPayment;
+use Coinbase\Wallet\Enum\CurrencyCode;
+use Coinbase\Wallet\Resource\Transaction;
+use Coinbase\Wallet\Resource\Order;
 class AddFundsController extends Controller
 {
     public function create()
@@ -22,39 +28,54 @@ class AddFundsController extends Controller
     	return view('user.addFunds.create');
     }
 
+        public function storeCoinPayment()
+        {
+            $trx['amountTotal'] = 0.05; // USD
+            $trx['note'] = 'Note for your transaction';
+            $trx['items'][0] = [
+                'descriptionItem' => 'Add Funds',
+                'priceItem' => 0.05, // USD
+                'qtyItem' => 1,
+                'subtotalItem' => 0.05 // USD
+            ];
+        // $trx['payload'] = [
+        //     // your custom array here
+        //     'foo' => [
+        //         'foo' => 'bar'
+        //     ]
+        // ];
+
+        $link_transaction = CoinPayment::url_payload($trx);
+
+        return view('test',compact('link_transaction'));
+
+        }
+    
+
     public function store(Request $request)
     {
-        // $checkouts = Coinbase::getCheckouts();
-        // print_r($checkouts);
+
 
         try {
              DB::beginTransaction();
+            $grandTotal=$request->amount;
 
-        // $coinbase = new Coinbase(env('COINBASE_KEY'));
-        // $balance = $coinbase->getReceiveAddress();
-        // echo "Balance is " . $balance . " BTC";
-        // return exit();
-        $grandTotal=$request->amount;
+
     	if ($request->type==2) {
     		
-    		$configuration = Configuration::apiKey(env('COINBASE_KEY'), env('COINBASE_SECRET_KEY'));
-            $client = Client::create($configuration);
-   
-    		$amount = 0.50;
-			$orderId = 12;
+    		$trx['amountTotal'] = $grandTotal; // USD
+            $trx['note'] = 'Note for your transaction';
+            $trx['items'][0] = [
+                'descriptionItem' => 'Add Funds',
+                'priceItem' => $grandTotal, // USD
+                'qtyItem' => 1,
+                'subtotalItem' => $grandTotal // USD
+            ];
+          $redirect_url = CoinPayment::url_payload($trx);
 
-			$params = array(
-			    'name'          => 'Site order ID: '.$orderId,
-			    'amount'        => new Money($amount, 'USD'),
-			    'metadata'      => array('order_id' => $orderId),
-			    'auto_redirect' => true
-			);
+			
+            
 
-			$checkout = new Checkout($params);
-			$client->createCheckout($checkout);
-			$code = $checkout->getEmbedCode();
-
-			$redirect_url = "https://www.coinbase.com/checkouts/".$code;
 			return Redirect::to($redirect_url);
 
     	}else{
@@ -105,6 +126,22 @@ class AddFundsController extends Controller
                         'fee'=>$stripFee,
                         'total'=>$grandTotal,
                     ]);
+
+                    Transaction::create([
+                    'user_id'=>Auth::id(),
+                    'type'=>2,
+                    'note'=>'Add funds',
+                    'amount'=>$grandTotal,
+                    'total'=>$grandTotal,
+                    'from'=>'Stripe',
+                    'to'=>'Funds Wallet',
+                    'status'=>1,
+                    ]);
+
+                    $user=User::find(Auth::id());
+                    $user->funds_amount=$user->funds_amount+$grandTotal;
+                    $user->save();
+
                     $request->session()->flash('success', 'The add funds request successfully');
                 
                 }else{

@@ -38,10 +38,20 @@ class DiscountConytroller extends Controller
              $request->session()->flash('error', "Sorry!Username not found.");
              return back();
             }
+            if ($user->funds_amount < '0.5') {
+              $request->session()->flash('error', "Sorry! member need add funds their wallet.");
+              return back();
+            }
             $save=new Discount();
             $save->code=$request->code;
             $save->user_id=$user->id;
+            $save->amount=0.5;
             $save->save();
+
+            $update=User::find($user->id);
+            $update->funds_amount=($user->funds_amount-0.5);
+            $update->save();
+
             DB::commit();
              $request->session()->flash('success', "Save successfully");
              return back();

@@ -24,8 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // If IPN is enable set the schedule for ->daily()
+        // And if IPN is disable set schedule for ->everyMinute()
+         $schedule->command('coinpayment:transaction-check')
+            ->everyMinute();
     }
 
     /**

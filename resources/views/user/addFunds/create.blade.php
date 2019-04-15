@@ -13,8 +13,8 @@
 		<div class="form-group">
 			<label for="type" class="col-sm-3 col-form-label">Pay with</label>
 		<div class="col-sm-9">
-			<select class="form-control" id="gridCheck" name="type">
-				<option value="2">Coinbase</option>
+			<select class="form-control" id="gridCheck" name="type" required="">
+				<option value="2">Coinpayment</option>
 				<option value="1">Stripe</option>
 			</select>
 		</div>
@@ -22,7 +22,7 @@
 		<div class="form-group">
 	    <label for="amount" class="col-sm-3 col-form-label">Funds Amount</label>
                                             <div class="col-sm-9">
-                                                {!! Form::text('amount',null , ['class'=>' form-control','id'=>'amount','placeholder'=>'']) !!}
+                                                {!! Form::text('amount',null , ['class'=>' form-control','id'=>'amount','placeholder'=>'','required'=>true]) !!}
                                             </div>
 		</div>
 		<div class="form-group">

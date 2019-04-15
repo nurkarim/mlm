@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1fff4336ce5dfe52be400bedef3c0d75",
+    "content-hash": "b9043b0dcdbe10493725b0f861619d59",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -721,6 +721,60 @@
                 "url"
             ],
             "time": "2018-12-04T20:46:45+00:00"
+        },
+        {
+            "name": "hexters/coinpayment",
+            "version": "v1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hexters/CoinPayment.git",
+                "reference": "cf7de99e18948fe385e75dfa8ded0fb378c33ad4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hexters/CoinPayment/zipball/cf7de99e18948fe385e75dfa8ded0fb378c33ad4",
+                "reference": "cf7de99e18948fe385e75dfa8ded0fb378c33ad4",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3",
+                "nesbot/carbon": "^1.25",
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hexters\\CoinPayment\\Providers\\CoinPaymentServiceProvider"
+                    ],
+                    "aliases": {
+                        "CoinPayment": "Hexters\\CoinPayment\\Providers\\CoinPaymentFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hexters\\CoinPayment\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saifullah Syahidin",
+                    "email": "hexters@gmail.com"
+                }
+            ],
+            "description": "CoinPayment PHP client for Laravel",
+            "keywords": [
+                "Coinpayment",
+                "cryptocurrency",
+                "payment gateway",
+                "payment method"
+            ],
+            "time": "2019-03-20T13:49:21+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

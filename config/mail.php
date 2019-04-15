@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'mail.nurkarim.me'),
+    'host' => env('MAIL_HOST', 'mail.infinite-funds.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'dev@nurkarim.me'),
+        'address' => env('MAIL_FROM_ADDRESS', 'dev@infinite-funds.com'),
         'name' => env('MAIL_FROM_NAME', 'Inifinite-Funds'),
     ],
 

@@ -47,7 +47,7 @@
                                 </form>
                             </div>
                             <div class="text-center misc-footer">
-                               <p>Copyright © 2018 </p>
+                               <p>Copyright © 2019 </p>
                             </div>
                         </div>
                     </div>
@@ -55,5 +55,13 @@
             </div>
         </div>
     </section>
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection

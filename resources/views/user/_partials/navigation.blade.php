@@ -24,13 +24,13 @@
       </a>
    </li>  
    <li>
-      <a href='#'>
+      <a href='{{ route('fundsTransfer.create') }}'>
       <img src="{{ asset('public/icons/transfer.png') }}" class="icon" alt="dashboard">
       <span>Funds Transfer</span>
       </a>
    </li> 
    <li>
-      <a href='#'>
+      <a href='{{ route('user.discount') }}'>
       <img src="{{ asset('public/icons/promotion.png') }}" class="icon" alt="dashboard">
       <span>Discounts</span>
       </a>
@@ -41,6 +41,12 @@
       <span>Ebooks</span>
       </a>
    </li>
+     <li>
+      <a href="{{ route('withdrawals.create') }}">
+      <img src="{{ asset('public/icons/withdrawal.png') }}" class="icon" alt="dashboard">
+      <span>Withdrawal</span>
+      </a>
+   </li>
     <li class="treeview" id="menu_3">
       <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
       <img src="{{ asset('public/icons/business.png') }}" class="icon" alt="dashboard">
@@ -49,24 +55,13 @@
       <i class="fa fa-angle-left pull-right"></i></span>
       </a>
       <ul class="treeview-menu">
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Transaction History</span></a></li>
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Funds History</span></a></li>
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Withdrawal History</span></a></li>
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Transfer History</span></a></li>
+         <li><a href='{{ route('user.transaction') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Transaction History</span></a></li>
+         <li><a href='{{ route('user.fundsHistory') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Funds History</span></a></li>
+         <li><a href='{{ route('withdrawals.index') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Withdrawal History</span></a></li>
+         <li><a href='{{ route('fundsTransfer.index') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Funds Transfer History</span></a></li>
       </ul>
    </li>
-    <li class="treeview" id="menu_4">
-      <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-      <img src="{{ asset('public/icons/withdrawal.png') }}" class="icon" alt="dashboard">
-      <span>Withdrawal</span>
-      <span class="pull-right-container">
-      <i class="fa fa-angle-left pull-right"></i></span>
-      </a>
-      <ul class="treeview-menu">
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_4">Withdrawal</span></a></li>
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_4">Withdrawal History</span></a></li>
-      </ul>
-   </li>
+  
    <li class="treeview" id="menu_2">
       <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
       <img src="{{ asset('public/icons/setting.png') }}" class="icon" alt="dashboard">
@@ -76,8 +71,8 @@
       </a>
       <ul class="treeview-menu">
         
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_2">Profile Settings</span></a></li>
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_2">Password Change</span></a></li>
+         <li><a href='{{ route('user.profile') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_2">Profile Settings</span></a></li>
+         <li><a href='{{ route('user.password') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_2">Password Change</span></a></li>
       </ul>
    </li>
   

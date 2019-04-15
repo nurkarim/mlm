@@ -10,13 +10,15 @@ Route::get('checkPosition', 'Auth\RegisterController@checkPosition')->name('chec
 Route::get('checkDiscountCode', 'Auth\RegisterController@checkDiscountCode')->name('checkDiscountCode');
 Route::post('register', 'Auth\RegisterController@store')->name('register.store');
 
+Route::get('storeCoinPayment', 'AddFundsController@storeCoinPayment')->name('storeCoinPayment');
+
 Route::get('register', function() {
     return view('register');
 })->name('register');
 
 // ================================user portal=======================
 Route::get('/email/verify/{token}', 'Auth\RegisterController@verifyUser');
-Route::group(['prefix' => 'dashboard'], function() {
+Route::group(['prefix' => 'dashboard','middleware'=>'auth'], function() {
     
     Route::get('/', 'DashboardController@dashboard')->name('dashboard.app');
     // ================================genealogy================================
@@ -26,4 +28,15 @@ Route::group(['prefix' => 'dashboard'], function() {
     Route::get('position/purchase', 'UserController@create')->name('position.create');
     Route::post('position/purchase', 'UserController@store')->name('position.post');
     Route::resource('addFunds', 'AddFundsController');
+    Route::resource('fundsTransfer', 'FundsTransferController');
+    Route::resource('withdrawals', 'WithdrawalController');
+
+    // =================================History===============================
+    Route::get('fundsHistory', 'HistroyController@fundsHistory')->name('user.fundsHistory');
+    Route::get('transactions', 'HistroyController@transactionHistory')->name('user.transaction');
+    Route::get('my-discount', 'HistroyController@discounts')->name('user.discount');
+    Route::get('my-profile', 'UserController@myProfile')->name('user.profile');
+    Route::post('my-profile', 'UserController@saveProfile')->name('user.profileUpdate');
+    Route::get('passwordChange', 'UserController@password')->name('user.password');
+    Route::post('passwordChange', 'UserController@passwordChange')->name('user.storePassword');
 });

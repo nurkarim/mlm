@@ -3,7 +3,7 @@
 <div class="box box-solid">
 	<div class="box-header with-border">
 		<i class="fa fa-desktop"></i>
-		<h4 class="box-title">Funds History</h4>
+		<h4 class="box-title">Funds Transfer History</h4>
 		
 	</div>
 	<div class="box-body">
@@ -12,23 +12,23 @@
 		<thead>
 			<tr>
 				<th>SL</th>
-				<th>Type</th>
+				<th>Date</th>
+				<th>To</th>
 				<th>Amount</th>
-				<th>Stripe/Bitcoin Fee</th>
-				<th>Total</th>
+				<th>Remark</th>
 				<th>Status</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php $i=1; ?>
-		@foreach($funds as $fund)
+		@foreach($data as $value)
 			<tr>
 				<td>{{ $i++ }}</td>
-				<td>@if($fund->type==1) Stripe @else Coinpayment @endif</td>
-				<td>{{ $fund->amount }}</td>
-				<td>{{ $fund->fee }}</td>
-				<td>{{ $fund->total }}</td>
-				<td>@if($fund->status==1) Approved @else Pending @endif</td>
+				<td>{{ $value->created_at->format('Y-m-d') }}</td>
+				<td>{{ $value->user->user_name }}</td>
+				<td>{{ $value->amount }}</td>
+				<td>{{ $value->remark }}</td>
+				<td>@if($value->status==1) Approved @else Pending @endif</td>
 			
 			</tr>
 		@endforeach

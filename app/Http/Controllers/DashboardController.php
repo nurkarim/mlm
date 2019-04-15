@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Models\ReferralCommission;
+use App\Models\AddFundsWallet;
 class DashboardController extends Controller
 {
     public function dashboard()
     {
-    	return view('user._partials.app');
+        $sumComission=ReferralCommission::where('user_id',Auth::id())->sum('amount');
+        $funds=AddFundsWallet::where('user_id',Auth::id())->orderBy('id','DESC')->get();
+    	return view('user._partials.app',compact('sumComission','funds'));
     }
 
     public function genealogy()

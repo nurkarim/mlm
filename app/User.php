@@ -8,9 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Transaction;
 use App\Models\AddFundsWallet;
 use App\Models\Discount;
+use Hexters\CoinPayment\Entities\CoinPaymentuserRelation;
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,CoinPaymentuserRelation;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','user_name',
     ];
 
     /**
@@ -67,5 +68,10 @@ class User extends Authenticatable
     public function placementUser()
     {
         return $this->belongsTo(User::class,'placement_id','id');
+    }
+
+    public function referralUser()
+    {
+        return $this->hasMany(User::class,'referral_id','id');
     }
 }

@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Redirect;
 
 class LoginController extends Controller
 {
 
-   // use AuthenticatesUsers;
+   
 
     protected $redirectTo = '/dashboard';
 
@@ -25,14 +24,17 @@ class LoginController extends Controller
 
     public function checkLogin(Request $request)
     {
-        $remember = ($request->has('remember')) ? true : false;
-        $auth = Auth::attempt(
+
+       try {
+            $remember = ($request->has('remember')) ? true : false;
+            $auth = Auth::attempt(
             [
                 'user_name' => $request->get('email'),
                 'password' => $request->get('password'),
             ], $remember
         );
         if ($auth) {
+            
             if (Auth::user()->user_type == 0) {
               
                 return Redirect::to('admin');
@@ -44,6 +46,11 @@ class LoginController extends Controller
                 ->withInput($request->except('password'))
                 ->with('flash_notice', 'Your username/password combination was incorrect.');
         }
+       } catch (Exception $e) {
+              return Redirect::to('login')
+                ->withInput($request->except('password'))
+                ->with('flash_notice', 'Your username/password combination was incorrect.');
+       }
     }
 
     public function logout(Request $request)

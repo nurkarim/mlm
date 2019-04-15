@@ -6,7 +6,7 @@
 		<h4 class="box-title">Ebook List</h4>
 		<a href="#" class="pull-right btn btn-xs btn-primary" data-toggle="modal" data-target="#modal" onclick="loadModal('{{route('ebooks.create')}}')"><i class="fa fa-plus"></i> Add New </a>
 	</div>
-	<div class="box-body form-horizental">
+	<div class="box-body">
 	<div class="table-responsive">
 	<table id="datatable" class="table table-bordered box-table">
 		<thead>

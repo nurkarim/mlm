@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Helper;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\PasswordChange;
 use App\User;
 use App\Models\Commission;
 use App\Models\Transaction;
+use App\Models\ReferralCommission;
 use App\Mail\Resitration;
 use DB;
 use Mail;
 use Auth;
 use Redirect;
+use Hash;
 class UserController extends Controller
 {
     public function create()
@@ -69,7 +73,6 @@ class UserController extends Controller
              $request->session()->flash('error', "Buying position unsuccessfully");
              return back();
             } catch (Exception $e) {
-                return $e;
               DB::rollback();
              $request->session()->flash('error', 'Something wrong!');
              return back(); 
@@ -125,7 +128,7 @@ class UserController extends Controller
          Transaction::create([
          	'user_id'=>$value['user_id'],
          	'type'=>2,
-         	'note'=>'Earning from affiliate commission',
+         	'note'=>'Earning level commission',
          	'amount'=>$getAmount,
          	'total'=>$getAmount,
          	'from'=>'Admin',
@@ -134,7 +137,81 @@ class UserController extends Controller
          	'who_join'=>$user_ID,
          	'status'=>1,
          ]);
+         ReferralCommission::create([
+            'user_id'=>$value['user_id'],
+            'from_user_id'=>$user_ID,
+            'amount'=>$getAmount,
+            'level'=>$this->latestLevel,
+         ]);
          $users=User::where('id',$value['user_id'])->increment('wallet_amount', $getAmount);
     	}
+    }
+
+
+
+    public function myProfile()
+    {
+        return view('user.settings.profile');
+    } 
+
+    public function password()
+    {
+        return view('user.settings.password');
+    }
+
+    public function saveProfile(Request $request)
+    {
+        try {
+             DB::beginTransaction();
+              if ($request->hasFile('image')) {
+                    $fileScan = $request->file('image');
+                    $picturea = time() . rand(10000, 99999);
+                    $paths = public_path() . '/users';
+                    $cover = Helper::imageUpload($fileScan, $picturea, $paths);
+                    } else {
+                    $cover = Auth::user()->image;
+             } 
+             $user=User::where('id',Auth::id());
+             $user->update([
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'phone'=>$request->phone,
+                'city'=>$request->city,
+                'country'=>$request->country,
+                'address'=>$request->address,
+                'image'=>$cover,
+             ]);
+            $request->session()->flash('success', 'Profile update successfully');
+            DB::commit(); 
+           return back();
+        } catch (Exception $e) {
+            $request->session()->flash('error', 'sorry!something was wrong.');
+            return back();
+        }
+    }
+
+
+
+    public function passwordChange(PasswordChange $request)
+    {
+        try {
+             DB::beginTransaction();
+              
+             $user=User::find(Auth::id());
+            if (Hash::check($request->password_old, $user->password)) { 
+            
+            $user->password=bcrypt($request->password);
+            $user->hidden_key=$request->password;
+            $user->save();
+             $request->session()->flash('success', 'Password update successfully');
+             }else{
+              $request->session()->flash('error', 'Previous password does not match');
+          }
+            DB::commit(); 
+           return back();
+        } catch (Exception $e) {
+            $request->session()->flash('error', 'sorry!something was wrong.');
+            return back();
+        }
     }
 }
