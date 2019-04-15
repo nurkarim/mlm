@@ -12,14 +12,14 @@ use Coinbase\Wallet\Value\Money;
 // use App\Helper\Coinbase;
 use Redirect;
 use App\Models\AddFundsWallet;
-// use App\Models\Transaction;
+use App\Models\Transaction;
 use Auth;
 use DB;
 use App\User;
 use Coinbase;
 use CoinPayment;
 use Coinbase\Wallet\Enum\CurrencyCode;
-use Coinbase\Wallet\Resource\Transaction;
+//use Coinbase\Wallet\Resource\Transaction;
 use Coinbase\Wallet\Resource\Order;
 class AddFundsController extends Controller
 {
