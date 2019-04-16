@@ -24,14 +24,12 @@
 		@foreach($users as $user)
 			<tr>
 				<td>{{ $i++ }}</td>
-				<td><a href="#">{{ $user->user_name }}</a></td>
-				<td><a href="#">{{ $user->refferral->user_name }}</a></td>
-				<td><a href="#">{{ $user->placementUser->user_name }}</a></td>
+				<td><a href="{{ route('members.show',$user->id) }}">{{ $user->user_name }}</a></td>
+				<td><a href="{{ route('members.show',$user->refferral->id) }}">{{ $user->refferral->user_name }}</a></td>
+				<td><a href="{{ route('members.show',$user->placementUser->id) }}">{{ $user->placementUser->user_name }}</a></td>
 				<td>{{ $user->funds_amount }}</td>
 				<td>
-		         <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal" onclick="loadModal('{{route('members.show',$user->id)}}')">
-		         	<i class="fa fa-edit"></i>
-		         </button>
+		         <a  data-toggle="modal" data-target="#modal" onclick="loadModal('{{ route('members.action',$user->id) }}')" class="btn btn-info btn-xs" href="#">Action</a>
 				</td>
 			</tr>
 		@endforeach

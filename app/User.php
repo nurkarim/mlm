@@ -7,8 +7,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Transaction;
 use App\Models\AddFundsWallet;
+use App\Models\Withdrawal;
 use App\Models\Discount;
 use Hexters\CoinPayment\Entities\CoinPaymentuserRelation;
+use App\Models\ReferralCommission;
+
 class User extends Authenticatable
 {
     use Notifiable,CoinPaymentuserRelation;
@@ -73,5 +76,15 @@ class User extends Authenticatable
     public function referralUser()
     {
         return $this->hasMany(User::class,'referral_id','id');
+    }
+
+    public function withdrawals()
+    {
+        return $this->hasMany(Withdrawal::class,'user_id','id');
+    }
+
+    public function commissions()
+    {
+        return $this->hasMany(ReferralCommission::class,'user_id','id');
     }
 }

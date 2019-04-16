@@ -175,6 +175,7 @@ function discountCh() {
                 success: function(data) {
                 if (data.status==true) {
                     $('#discount').removeClass('error').addClass('success');
+                      $('.sms-disc').html('');
                     }else{
                       $('.sms-disc').html('This code already used.');
                     }

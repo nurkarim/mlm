@@ -76,6 +76,20 @@
          <li><a href='{{ route('user.password') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_2">Password Change</span></a></li>
       </ul>
    </li>
+
+      <li class="treeview" id="menu_11">
+      <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+      <img src="{{ asset('public/icons/mail.png') }}" class="icon" alt="dashboard">
+      <span>Supports</span>
+      <span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i></span>
+      </a>
+      <ul class="treeview-menu">
+        
+         <li><a href='{{ route('support.compose') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_11">Compose</span></a></li>
+         <li><a href='{{ route('support.inbox') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_11">Inbox</span></a></li>
+      </ul>
+   </li>
   
     <li>
       <a href='{{ route('login.logout') }}'>

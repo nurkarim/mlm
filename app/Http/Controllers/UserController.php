@@ -34,11 +34,17 @@ class UserController extends Controller
     {
     	try {
              DB::beginTransaction();
+                 if (Auth::user()->funds_amount < '0.5') {
+                     $request->session()->flash('error', 'Sorry!Please add funds to your wallet.');
+                     return back();
+                 }
+
             $refe=User::where('user_name',$request->referral)->first();
             if (!$refe) {
              $request->session()->flash('error', 'Referral  not found.');
              return back();
             }
+
             $postion=User::where('user_name',$request->placement_name)->first();
             if (!$postion) {
              $request->session()->flash('error', 'Position  not found.');
@@ -70,6 +76,17 @@ class UserController extends Controller
                 'link'=>url('/').'/email/verify/'.$token,
             ];
             $amount='0.50';
+            Auth::user()->decrement('funds_amount', $amount);
+            Transaction::create([
+                    'user_id'=>Auth::id(),
+                    'type'=>5,
+                    'note'=>'Buying Position',
+                    'amount'=>$amount,
+                    'total'=>$amount,
+                    'from'=>'Funds Wallet',
+                    'to'=>'Admin',
+                    'status'=>1,
+                    ]);
             $this->unilevel($amount,$user->id);
             Mail::to($request->email)->send(new Resitration($data));
             DB::commit();
@@ -94,11 +111,11 @@ class UserController extends Controller
         $user = User::find($uid);
         if ($user) {
 
-            if ($referId == $user->referral_id) {
+            if ($referId == $user->placement_id) {
                 $this->latestLevel = $i;
             }
             $i++;
-            self::checkLevel($user->referral_id, $referId, $i);
+            self::checkLevel($user->placement_id, $referId, $i);
         }
     }
 
@@ -106,17 +123,17 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if ($user) {
-            $use = User::where('id',$user->referral_id)->first();
+            $use = User::where('id',$user->placement_id)->first();
             if($use){
 
             $this->array[] = [
                 'id' => $user->id,
-                'user_id' => $user->referral_id,
+                'user_id' => $user->placement_id,
             ];
         }
             if ($level <= 12) {
                 $level++;
-                self::unilevelMember($user->referral_id, $level);
+                self::unilevelMember($user->placement_id, $level);
             }
 
         }

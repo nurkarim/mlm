@@ -99,14 +99,14 @@ class EbookController extends Controller
              $request->session()->flash('success', "Save successfully");
              return back();
     	} catch (Exception $e) {
-    		return $e;
+    
     		DB::rollback();
              $request->session()->flash('error', 'Something wrong!');
              return back(); 
     	}
     }
 
-    public function delete()
+    public function delete(Request $request)
     {
     	try {
             DB::beginTransaction();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Discount;
+use App\Models\Transaction;
 use App\User;
 use DB;
 class DiscountConytroller extends Controller
@@ -51,7 +52,16 @@ class DiscountConytroller extends Controller
             $update=User::find($user->id);
             $update->funds_amount=($user->funds_amount-0.5);
             $update->save();
-
+            Transaction::create([
+                    'user_id'=>$user->id,
+                    'type'=>5,
+                    'note'=>'Buy Discount Code',
+                    'amount'=>0.5,
+                    'total'=>0.5,
+                    'from'=>'Funds Wallet',
+                    'to'=>'Admin',
+                    'status'=>1,
+                    ]);
             DB::commit();
              $request->session()->flash('success', "Save successfully");
              return back();

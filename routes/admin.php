@@ -21,6 +21,8 @@ Route::post('ebooksDelete', 'EbookController@delete')->name('ebooks.delete');
 
 Route::resource('members', 'MemberController');
 Route::get('inactiveMemebrs', 'MemberController@inActiveUser')->name('members.inactive');
+Route::get('actionMemebrs/{id}', 'MemberController@action')->name('members.action');
+Route::post('actionMemebrs', 'MemberController@update')->name('members.update');
 
 
 });

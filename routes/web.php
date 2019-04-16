@@ -45,6 +45,11 @@ Route::group(['prefix' => 'dashboard','middleware'=>'auth'], function() {
 
     // ==================================EbookController=========================================
     Route::get('ebooks', 'EbookController@index')->name('ebook');
+    Route::get('support/compose', 'SupportController@create')->name('support.compose');
+    Route::get('support/show/{id}', 'SupportController@show')->name('support.show');
+    Route::post('support/compose', 'SupportController@store')->name('support.store');
+    Route::post('support/delete', 'SupportController@delete')->name('support.delete');
+    Route::get('support/inbox', 'SupportController@index')->name('support.inbox');
 
 
 

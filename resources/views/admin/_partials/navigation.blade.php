@@ -1,6 +1,6 @@
 <ul class="sidebar-menu" data-widget="tree">
    <li>
-      <a href='#'>
+      <a href='{{url('admin')}}'>
       <img src="{{ asset('public/icons/dashboard1.png') }}" class="icon" alt="dashboard">
       <span>Dashboard</span>
       </a>
