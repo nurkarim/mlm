@@ -35,8 +35,19 @@ Route::group(['prefix' => 'dashboard','middleware'=>'auth'], function() {
     Route::get('fundsHistory', 'HistroyController@fundsHistory')->name('user.fundsHistory');
     Route::get('transactions', 'HistroyController@transactionHistory')->name('user.transaction');
     Route::get('my-discount', 'HistroyController@discounts')->name('user.discount');
+    Route::get('my-earning', 'HistroyController@commission')->name('earning.index');
+
+    // =======================================usercontroller===========================
     Route::get('my-profile', 'UserController@myProfile')->name('user.profile');
     Route::post('my-profile', 'UserController@saveProfile')->name('user.profileUpdate');
     Route::get('passwordChange', 'UserController@password')->name('user.password');
     Route::post('passwordChange', 'UserController@passwordChange')->name('user.storePassword');
+
+    // ==================================EbookController=========================================
+    Route::get('ebooks', 'EbookController@index')->name('ebook');
+
+
+
 });
+
+Route::get('/affiliate/{user_name}', 'UserController@affiliate')->name('user.affiliate');

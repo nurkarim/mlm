@@ -21,6 +21,8 @@ use CoinPayment;
 use Coinbase\Wallet\Enum\CurrencyCode;
 //use Coinbase\Wallet\Resource\Transaction;
 use Coinbase\Wallet\Resource\Order;
+use App\Mail\FundsRequest;
+use Mail;
 class AddFundsController extends Controller
 {
     public function create()
@@ -141,7 +143,15 @@ class AddFundsController extends Controller
                     $user=User::find(Auth::id());
                     $user->funds_amount=$user->funds_amount+$grandTotal;
                     $user->save();
-
+                $data=[
+                'name'=>Auth::user()->name,
+                'user_name'=>Auth::user()->user_name,
+                'date'=>date('Y-m-d'),
+                'amount'=>$grandTotal,
+                'fee'=>$stripFee,
+                'type'=>'Stripe',
+            ];
+                 Mail::to(Auth::user()->email)->send(new FundsRequest($data));
                     $request->session()->flash('success', 'The add funds request successfully');
                 
                 }else{

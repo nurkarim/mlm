@@ -7,6 +7,7 @@ use Auth;
 use App\Models\AddFundsWallet;
 use App\Models\Transaction;
 use App\Models\Discount;
+use App\Models\ReferralCommission;
 class HistroyController extends Controller
 {
     public function fundsHistory()
@@ -25,5 +26,11 @@ class HistroyController extends Controller
     {
         $data=Discount::where('user_id',Auth::id())->get();
         return view('user.discounts.index',compact('data'));
+    }
+
+    public function commission()
+    {
+        $data=ReferralCommission::where('user_id',Auth::id())->get();
+        return view('user.commission.index',compact('data'));
     }
 }

@@ -16,11 +16,18 @@ use Mail;
 use Auth;
 use Redirect;
 use Hash;
+use Session;
 class UserController extends Controller
 {
+    public function affiliate($slug)
+    {
+        Session::put('user_name',$slug);
+    	return view('register');
+    }
+
     public function create()
     {
-    	return view('user.buyPosition.create');
+        return view('user.buyPosition.create');
     }
 
     public function store(UserRequest $request)

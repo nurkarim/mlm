@@ -20,8 +20,16 @@
             <li class="nav-item "><a href="#aboutus" class="nav-link">About Us</a></li>
             <li class="nav-item "><a href="#why" class="nav-link">Our Story</a></li>
             <li class="nav-item "><a href="#about" class="nav-link">Services</a></li>
-            
+            @if(Auth::check())
+            @if(Auth::user()->user_type==1)
+             <li class="nav-item "><a href="{{ url('dashboard') }}" class="nav-link"><span style="color:#968145"><i class="fa fa-arrow-right"></i>Dashboard</span></a></li>
+            @else
+            <li class="nav-item "><a href="{{ url('admin') }}" class="nav-link"><span style="color:#968145"><i class="fa fa-arrow-right"></i> Admin</span></a></li>
+            @endif
+            @else
             <li class="nav-item "><a href="{{ route('login') }}" class="nav-link"><span style="color:#968145"><i class="fa fa-arrow-right"></i> Login</span></a></li>
+            @endif
+
             <li class="nav-item "><a href="{{ route('register') }}" class="nav-link"><span style="color:#968145"><i class="fa fa-check-circle-o"></i> Register Now</span></a></li>
           </ul>
         </div>

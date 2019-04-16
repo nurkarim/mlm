@@ -1,6 +1,6 @@
 <ul class="sidebar-menu" data-widget="tree">
    <li>
-      <a href='#'>
+      <a href='{{ url('dashboard') }}'>
       <img src="{{ asset('public/icons/dashboard1.png') }}" class="icon" alt="dashboard">
       <span>Dashboard</span>
       </a>
@@ -36,7 +36,7 @@
       </a>
    </li>
    <li>
-      <a href='#'>
+      <a href='{{ route('ebook') }}'>
       <img src="{{ asset('public/icons/ebook.png') }}" class="icon" alt="dashboard">
       <span>Ebooks</span>
       </a>
@@ -59,6 +59,7 @@
          <li><a href='{{ route('user.fundsHistory') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Funds History</span></a></li>
          <li><a href='{{ route('withdrawals.index') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Withdrawal History</span></a></li>
          <li><a href='{{ route('fundsTransfer.index') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Funds Transfer History</span></a></li>
+          <li><a href='{{ route('earning.index') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Earning commission History</span></a></li>
       </ul>
    </li>
   

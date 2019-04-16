@@ -152,7 +152,7 @@
 				<td>@if($funds->type==1)
 					<label class="label label-primary">Stripe</label>
 					@else
-	                <label class="label label-info">Coinbase</label>
+	                <label class="label label-info">Coinpayment</label>
 					@endif</td>
 			    <td></td>
 			    <td>{{ $funds->amount }}</td>

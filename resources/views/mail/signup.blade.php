@@ -64,7 +64,7 @@
         <td align="center" valign="top">
           <table border="0" cellpadding="0" cellspacing="0" id="emailContainer">
                 <tr>
-                    <td align="center" valign="top"><img src="http://infinite-funds.nurkarim.me/public/ui/img/logo.png" width="331" height="84">                  </td>
+                    <td align="center" valign="top"> </td>
 
                 </tr>
                 <tr>

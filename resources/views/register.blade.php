@@ -45,7 +45,7 @@
                                     <div class="form-group">
                                         <label for="referral">Referral</label>
                                         <div class="group-icon">
-                                        <input id="referral" autocomplete="off" type="text" placeholder="Enter a referral username" class="form-control password-text" name="referral" required="" onchange="checkRefarral()">
+                                        <input id="referral" autocomplete="off" type="text" placeholder="Enter a referral username" class="form-control password-text" name="referral" required="" onchange="checkRefarral()" value="@if(Session::has('user_name')) {{ Session::get('user_name') }} @endif">
                                         <span class="icon-lock text-muted icon-input"></span>
                                         </div>
                                    </div>
@@ -53,14 +53,14 @@
                                     <div class="form-group">
                                         <label for="placement_name">Position</label>
                                         <div class="group-icon">
-                                        <input id="placement_name" autocomplete="off" type="text" placeholder="Enter a position username" class="form-control password-text" onchange="checkPosition()" name="placement_name" required="">
+                                        <input id="placement_name" autocomplete="off" type="text" placeholder="Enter a position username" class="form-control password-text" onchange="checkPosition()" name="placement_name" required="" value="@if(Session::has('user_name')) {{ Session::get('user_name') }} @endif">
                                         <span class="icon-lock text-muted icon-input"></span>
                                         </div>
                                    </div>
                                        <div class="form-group">
                                         <label for="discount">Promo Code</label>
                                         <div class="group-icon">
-                                        <input id="discount" autocomplete="off" type="text" placeholder="Enter a discount code" class="form-control password-text" name="discount" required="" onchange="discountCh()">
+                                        <input id="discount" autocomplete="off" type="text" placeholder="Enter a discount code from referral" class="form-control password-text" name="discount" required="" onchange="discountCh()">
                                         <span class="icon-lock text-muted icon-input sms-disc"></span>
                                         </div>
                                    </div>
