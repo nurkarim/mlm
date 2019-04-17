@@ -33,6 +33,9 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style type="text/css">
+    #DataTables_Table_0_paginate{display: none;}
+    </style>
 </head>
 <body class="hold-transition skin-purple-light sidebar-mini fixed">
 <div class="wrapper">
@@ -150,6 +153,7 @@
         $('.datatable').DataTable();
     } );
 </script>
+@include('admin._partials.datatable')
 @yield('js')
 @include('admin._partials.modal')
 </body>

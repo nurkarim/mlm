@@ -23,6 +23,14 @@ Route::resource('members', 'MemberController');
 Route::get('inactiveMemebrs', 'MemberController@inActiveUser')->name('members.inactive');
 Route::get('actionMemebrs/{id}', 'MemberController@action')->name('members.action');
 Route::post('actionMemebrs', 'MemberController@update')->name('members.update');
+// ============================History============================
+Route::get('fundsHistory', 'HistoryController@addFundsIndex')->name('admin.fundHistory');
+Route::get('fundsLoadAjax', 'HistoryController@addFundsAjax')->name('admin.fundHistory.ajax');
+
+Route::get('transactions', 'HistoryController@transaction')->name('admin.transaction');
+Route::get('transactionAjax', 'HistoryController@transactionAjax')->name('admin.transaction.ajax');
+Route::get('withdrawalHistory', 'HistoryController@withdrawal')->name('admin.withdrawalHistory');
+Route::get('withdrawalAjax', 'HistoryController@withdrawalAjax')->name('admin.withdrawalAjax');
 
 
 });

@@ -37,9 +37,9 @@
       <i class="fa fa-angle-left pull-right"></i></span>
       </a>
       <ul class="treeview-menu">
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Transaction History</span></a></li>
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Funds History</span></a></li>
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Withdrawal History</span></a></li>
+         <li><a href='{{ route('admin.transaction') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Transaction History</span></a></li>
+         <li><a href='{{ route('admin.fundHistory') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Funds History</span></a></li>
+         <li><a href='{{ route('admin.withdrawalHistory') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Withdrawal History</span></a></li>
          <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Transfer History</span></a></li>
       </ul>
    </li>
