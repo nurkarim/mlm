@@ -113,7 +113,7 @@ class AddFundsController extends Controller
                 $token = $token['id'];
                 $charge = \Stripe\Charge::create([
                         'amount' => $val,
-                        'currency' => 'GBP',
+                        'currency' => 'usd',
                         'description' => 'New Order charge',
                         'source' => $token,
                     ]);
