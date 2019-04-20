@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\CheckCoinpayment'
     ];
 
     /**
@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
     {
         // If IPN is enable set the schedule for ->daily()
         // And if IPN is disable set schedule for ->everyMinute()
-         $schedule->command('coinpayment:transaction-check')
-            ->everyMinute();
+         $schedule->command('coinpayment:check')
+            ->everyMinute();   
     }
 
     /**

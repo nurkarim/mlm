@@ -72,46 +72,47 @@
                         <table border="0" cellpadding="20" cellspacing="0" width="90%" id="emailBody" valign="top">
                             <tr>
                                 <td align="center">
-                                    <h2 style="margin-top: 0">Congratulations on becoming an Infinite-Funds Member!</h2>
+                                    <h2 style="margin-top: 0">Withdrawal Approved</h2>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                               
-                                   <p>Dear {{ $data['name'] }}, </p>
-                                   
-                                   
-                                      
-                                        <p>Thank you for opening an account with <span style="margin-top: 0">Infinite-Funds</span>.As one of the leaders in this industry, we can assure you that our products and our services will not disappoint you. Please  your account email verification <a href="{{ $data['link'] }}">Verify Email</a>. We will review and update your account within 24-48 hours.</p>
-                                        <p><a href="{{ $data['link'] }}">{{ $data['link'] }}</a></p>
-                                        <p>Your login details for <span style="margin-top: 0">Infinite-Funds</span>  are:</p>
-                                        <br>
-                                        <table width="526" border="0" cellspacing="0" cellpadding="0">
+                                      <p>Dear {{ $data['name'] }}, </p>
+                                    <p>This email is to advise you that your  submitted withdrawal has been  cancel and you will get retun amount in your wallet.</p>
+                                     <p>Withdrawal Details:  </p><br>
+
+                                        <table width="570" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+                                            <td width="155" height="34"><span class="style8">Full Name</span></td>
+                                            <td width="18" align="center">:</td>
+                                            <td width="397"><span class="style21">{{ $data['name'] }}</span></td>
+                                          </tr>
+                                          <tr>
+                                            <td width="155" height="34"><span class="style8">Username</span></td>
+                                            <td width="18" align="center">:</td>
+                                            <td width="397"><span class="style21">{{ $data['user_name'] }}</span></td>
+                                          </tr>
+										
+                                          <tr>
+                                            <td width="155" height="33"><span class="style8">Return Amount</span></td>
+                                            <td width="18" align="center">:</td>
+                                            <td width="397"><span class="style21">{{ number_format($data['amount'],2) }}</span></td>
+                                          </tr>
                                           
-                                          <tr>
-                                            <td width="113" height="27"><span class="style2">User Name</span></td>
-                                            <td width="15" align="center">:</td>
-                                            <td width="390"><span class="style2">{{ $data['userName'] }}</span></td>
-                                          </tr>
-                                          <tr>
-                                            <td height="29"><span class="style2">Password</span></td>
-                                            <td align="center">:</td>
-                                            <td><span class="style2">{{ $data['password'] }}</span></td>
-                                          </tr>
-                                          <tr>
-                                            <td height="30"><span class="style2">Date Register  </span></td>
-                                            <td align="center">:</td>
-                                            <td><span class="style2">{{ $data['created_at'] }}</span></td>
-                                          </tr>
-                                        </table>
-                                  <p>Warm Regards,</p>
-                                  <p>Infinite-Funds</p>
+										  
+                                          
+                                  </table>
+                                
                                       
                               </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p>Email: <u>support@infinite-funds.com</u></p>
+                                     <p>To check the status of your transaction, please visit the "transaction" page or lower section of the Dashboard Area and the "History" page to see details of previous transactions.</p>
+                                    <p>To visit your dashboard area, <a href="www.infinite-funds.com">click here</a>. If you have any questions, please let me know by replying to this email.</p>
+                                    <p>Kind regards,<br>
+                                      <strong>Infinite-Funds Team</strong><br>
+                                  </p>
                               </td>
                             </tr>
                         </table>

@@ -54,6 +54,7 @@ class WithdrawalController extends Controller
             DB::commit(); 
            return back();
     	} catch (Exception $e) {
+            DB::rollback();
     		$request->session()->flash('error', 'sorry!something was wrong.');
    	        return back();
     	}

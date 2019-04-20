@@ -16,6 +16,7 @@ use App\Models\Transaction;
 use Auth;
 use DB;
 use App\User;
+use App\CoinpaymentTransaction;
 use Coinbase;
 use CoinPayment;
 use Coinbase\Wallet\Enum\CurrencyCode;
@@ -28,6 +29,28 @@ class AddFundsController extends Controller
     public function create()
     {
     	return view('user.addFunds.create');
+    }
+
+    public function coinbasePayment($value='')
+    {
+        $configuration = Configuration::apiKey(env('COINBASE_KEY'), env('COINBASE_SECRET_KEY'));
+        $client = Client::create($configuration);
+
+        $amount = 0.1;
+        $orderId = "242";
+
+        $params = array(
+            'name'          => 'Site order ID: '.$orderId,
+            'amount'        => new Money($amount, 'USD'),
+            'metadata'      => array('order_id' => $orderId),
+            'auto_redirect' => true
+        );
+
+        $checkout = new Checkout($params);
+        $client->createCheckout($checkout);
+        $code = $checkout->getEmbedCode();
+
+        $redirect_url = "https://www.coinbase.com/checkouts/$code";
     }
 
         public function storeCoinPayment()
@@ -57,12 +80,9 @@ class AddFundsController extends Controller
     public function store(Request $request)
     {
 
-
         try {
              DB::beginTransaction();
             $grandTotal=$request->amount;
-
-
     	if ($request->type==2) {
     		
     		$trx['amountTotal'] = $grandTotal; // USD
@@ -74,10 +94,6 @@ class AddFundsController extends Controller
                 'subtotalItem' => $grandTotal // USD
             ];
           $redirect_url = CoinPayment::url_payload($trx);
-
-			
-            
-
 			return Redirect::to($redirect_url);
 
     	}else{
@@ -162,10 +178,16 @@ class AddFundsController extends Controller
            
         return back();
         } catch (Exception $e) {
-                return $e;
+                
               DB::rollback();
              $request->session()->flash('error', 'Something wrong!');
              return back(); 
         }
+    }
+
+    public function coinpayment()
+    {
+        $data=CoinpaymentTransaction::where('user_id',Auth::id())->get();
+        return view('user.coinpayment.list',compact('data'));
     }
 }

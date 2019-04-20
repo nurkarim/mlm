@@ -107,6 +107,7 @@
 <script src="{{asset('public/theme1/js/fastclick.js')}}"></script>
 <script src="{{asset('public/theme1/js/adminlte.min.js')}}"></script>
 
+<script src="{{ url('/') }}/public/js/libs/slimscroll.min.js"></script>
 
 <script src="{{asset('public/datatable/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/datatable/datatables.bootstrap.js')}}"></script>

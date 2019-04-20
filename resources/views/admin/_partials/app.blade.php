@@ -22,7 +22,7 @@
          <span class="info-box-icon bg-blue-gradient"><i class="fa fa-users"></i></span>
          <div class="info-box-content">
             <span class="info-box-text">Active Members</span>
-            <span class="info-box-number">0</span>
+            <span class="info-box-number">{{$activeMember}}</span>
          </div>
       </div>
    </div>
@@ -34,7 +34,7 @@
          <span class="info-box-icon bg-purple-gradient"><i class="fa fa-users"></i></span>
          <div class="info-box-content">
             <span class="info-box-text">Inactive Members</span>
-            <span class="info-box-number">0</span>
+            <span class="info-box-number">{{$inactiveMember}}</span>
          </div>
          <!-- /.info-box-content -->
       </div>
@@ -46,7 +46,7 @@
          <span class="info-box-icon bg-maroon-gradient"><i class="fa fa-money"></i></span>
          <div class="info-box-content">
             <span class="info-box-text">Total Withdrawal</span>
-            <span class="info-box-number">0</span>
+            <span class="info-box-number">{{ $twithdrawal }}</span>
          </div>
          <!-- /.info-box-content -->
       </div>
@@ -61,20 +61,33 @@
          <h4 class="box-title">Inactive Members</h4>
       </div>
       <div class="box-body">
-         <table class="table table-bordered box-table">
-            <thead>
-               <tr>
-                  <th>SL</th>
-                  <th>Join Date</th>
-                  <th>UserName</th>
-                  <th>Referral By</th>
-                  <th>Postion By</th>
-                  <th>Action</th>
-               </tr>
-            <thead>
-            <tbody>
-            <tbody>
-         </table>
+ <table id="datatable" class="table table-bordered box-table">
+      <thead>
+         <tr>
+            <th>SL</th>
+            <th>Username</th>
+            <th>Referral ID</th>
+            <th>Position ID</th>
+            <th>Funding Wallet</th>
+            <th>Action</th>
+         </tr>
+      </thead>
+      <tbody>
+         <?php $i=1; ?>
+      @foreach($users as $user)
+         <tr>
+            <td>{{ $i++ }}</td>
+            <td><a href="{{ route('members.show',$user->id) }}">{{ $user->user_name }}</a></td>
+            <td><a href="{{ route('members.show',$user->refferral->id) }}">{{ $user->refferral->user_name }}</a></td>
+            <td><a href="{{ route('members.show',$user->placementUser->id) }}">{{ $user->placementUser->user_name }}</a></td>
+            <td>{{ $user->funds_amount }}</td>
+            <td>
+               <a  data-toggle="modal" data-target="#modal" onclick="loadModal('{{ route('members.action',$user->id) }}')" class="btn btn-info btn-xs" href="#">Action</a>
+            </td>
+         </tr>
+      @endforeach
+      </tbody>
+   </table>
       </div>
    </div>
 </div>
@@ -85,20 +98,38 @@
          <h4 class="box-title">Withdrawal Request</h4>
       </div>
       <div class="box-body">
-         <table class="table table-bordered box-table">
-            <thead>
-               <tr>
-                  <th>SL</th>
-                  <th>UserName</th>
-                  <th>Wallet</th>
-                  <th>Amount Info</th>
-                  <th>Date</th>
-                  <th>Action</th>
-               </tr>
-            <thead>
-            <tbody>
-            <tbody>
-         </table>
+        <table  class="table table-bordered box-table">
+      <thead>
+         <tr>
+            <th>SL</th>
+            <th>Date</th>
+            <th>Wallet Address</th>
+            <th>Amount</th>
+            <th>Fee</th>
+            <th>Total</th>
+            <th>Remark</th>
+            <th>Status</th>
+            <th>Action</th>
+         </tr>
+      </thead>
+      <tbody>
+         <?php $i=1; ?>
+      @foreach($withdrawals as $value)
+         <tr>
+            <td>{{ $i++ }}</td>
+            <td>{{ $value->created_at->format('Y-m-d') }}</td>
+            <td>{{ $value->wallet_address }}</td>
+            <td>{{ $value->amount }}</td>
+            <td>{{ $value->fee }}</td>
+            <td>{{ $value->total }}</td>
+            <td>{{ $value->remark }}</td>
+            <td>@if($value->status==1) Approved @else Pending @endif</td>
+            <td><button data-toggle="modal" data-target="#modal" onclick="loadModal('{{route('withdrawals.edit',$value->id)}}')" class="btn btn-xs btn-info">Action</button></td>
+         
+         </tr>
+      @endforeach
+      </tbody>
+   </table>
       </div>
    </div>
 </div>

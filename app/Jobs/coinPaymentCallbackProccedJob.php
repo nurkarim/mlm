@@ -56,21 +56,21 @@ class coinPaymentCallbackProccedJob implements ShouldQueue
     /* === End data $request from task schedule === */
 
     /* === Output data $request from Create Transaction === */
-         //$this->data['request_type'] = 'create_transaction';
-         //$this->data['params']; // <--- Your custom params
-        // $this->data['payload']; // <--- Your payload data
-         // $this->data['transaction']['time_created'];
-         // $this->data['transaction']['time_expires'];
-         // $this->data['transaction']['status'];
-         // $this->data['transaction']['status_text'];
-         // $this->data['transaction']['type'];
-         // $this->data['transaction']['coin'];
-         // $this->data['transaction']['amount'];
-         // $this->data['transaction']['amountf'];
-         // $this->data['transaction']['received'];
-         // $this->data['transaction']['receivedf'];
-         // $this->data['transaction']['recv_confirms'];
-         // $this->data['transaction']['payment_address'];
+         $this->data['request_type'] = 'create_transaction';
+         $this->data['params']; // <--- Your custom params
+         $this->data['payload']; // <--- Your payload data
+         $this->data['transaction']['time_created'];
+         $this->data['transaction']['time_expires'];
+         $this->data['transaction']['status'];
+         $this->data['transaction']['status_text'];
+         $this->data['transaction']['type'];
+         $this->data['transaction']['coin'];
+         $this->data['transaction']['amount'];
+         $this->data['transaction']['amountf'];
+         $this->data['transaction']['received'];
+         $this->data['transaction']['receivedf'];
+         $this->data['transaction']['recv_confirms'];
+         $this->data['transaction']['payment_address'];
     /* === End data $request from Create Transaction === */
 
     }

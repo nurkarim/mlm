@@ -59,7 +59,8 @@
          <li><a href='{{ route('user.fundsHistory') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Funds History</span></a></li>
          <li><a href='{{ route('withdrawals.index') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Withdrawal History</span></a></li>
          <li><a href='{{ route('fundsTransfer.index') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Funds Transfer History</span></a></li>
-          <li><a href='{{ route('earning.index') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Earning commission History</span></a></li>
+          <li><a href='{{ route('earning.index') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Earning commission History</span></a></li>  
+          <li><a href='{{ route('dashboard.coinpayment') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Coinpayment History </span></a></li>
       </ul>
    </li>
   

@@ -32,5 +32,8 @@ Route::get('transactionAjax', 'HistoryController@transactionAjax')->name('admin.
 Route::get('withdrawalHistory', 'HistoryController@withdrawal')->name('admin.withdrawalHistory');
 Route::get('withdrawalAjax', 'HistoryController@withdrawalAjax')->name('admin.withdrawalAjax');
 
+// ==============================withdrawal=========================================
 
+Route::get('withdrawals/edit/{id}', 'WithdrawalController@edit')->name('withdrawals.edit');
+Route::put('withdrawals/update/{id}', 'WithdrawalController@update')->name('withdrawals.update');
 });

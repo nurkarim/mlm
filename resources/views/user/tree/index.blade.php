@@ -19,7 +19,7 @@ padding-top: 20px; position: relative;
 -webkit-transition: all 0.5s;
 -moz-transition: all 0.5s;
 display: flex;
-      justify-content: center;
+      
 }
 .genealogy li {
 float: left; text-align: center;

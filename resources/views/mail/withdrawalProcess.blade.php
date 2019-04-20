@@ -64,7 +64,7 @@
         <td align="center" valign="top">
           <table border="0" cellpadding="0" cellspacing="0" id="emailContainer">
                 <tr>
-                    <td align="center" valign="top"> </td>
+                    <td align="center" valign="top" style="height: 100px"> </td>
 
                 </tr>
                 <tr>

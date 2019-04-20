@@ -51,8 +51,16 @@ Route::group(['prefix' => 'dashboard','middleware'=>'auth'], function() {
     Route::post('support/delete', 'SupportController@delete')->name('support.delete');
     Route::get('support/inbox', 'SupportController@index')->name('support.inbox');
 
+    Route::get('testCoinbase', 'AddFundsController@coinbasePayment');
+    
 
+    Route::get('coinpayment/funds/history', 'AddFundsController@coinpayment')->name('dashboard.coinpayment');
+  
 
 });
-
+Route::get('testPage', function() {
+    return view('user.coinpayment.index');
+});
+Route::post('testCoinbasesa', 'CoinPaymentsController@manual_check')->name('testCoinbase.check');
 Route::get('/affiliate/{user_name}', 'UserController@affiliate')->name('user.affiliate');
+
