@@ -32,8 +32,18 @@ Route::get('transactionAjax', 'HistoryController@transactionAjax')->name('admin.
 Route::get('withdrawalHistory', 'HistoryController@withdrawal')->name('admin.withdrawalHistory');
 Route::get('withdrawalAjax', 'HistoryController@withdrawalAjax')->name('admin.withdrawalAjax');
 
+Route::get('fundsTransferHistory', 'HistoryController@fundsTransfer')->name('admin.fundsTransfer');
+Route::get('fundsTransferHistoryAjax', 'HistoryController@fundsTransferAjax')->name('admin.fundsTransferAjax');
+
+Route::get('earningHistory', 'HistoryController@earningHistory')->name('admin.earningHistory');
+Route::get('earningHistoryAjax', 'HistoryController@earningHistoryAjax')->name('admin.earningHistoryAjax');
+
 // ==============================withdrawal=========================================
 
 Route::get('withdrawals/edit/{id}', 'WithdrawalController@edit')->name('withdrawals.edit');
 Route::put('withdrawals/update/{id}', 'WithdrawalController@update')->name('withdrawals.update');
+Route::get('activeWithdrawal', 'WithdrawalController@activeWithdrawal')->name('withdrawals.active');
+Route::get('activeWithdrawalAjax', 'WithdrawalController@activeWithdrawalAjax')->name('withdrawals.activeAjax');
+Route::get('inactiveWithdrawal', 'WithdrawalController@inactiveWithdrawal')->name('withdrawals.inactive');
+Route::get('inactiveWithdrawalAjax', 'WithdrawalController@inactiveWithdrawalAjax')->name('withdrawals.inactiveAjax');
 });

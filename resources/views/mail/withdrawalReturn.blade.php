@@ -72,7 +72,7 @@
                         <table border="0" cellpadding="20" cellspacing="0" width="90%" id="emailBody" valign="top">
                             <tr>
                                 <td align="center">
-                                    <h2 style="margin-top: 0">Withdrawal Approved</h2>
+                                    <h2 style="margin-top: 0">Withdrawal Cancel</h2>
                                 </td>
                             </tr>
                             <tr>

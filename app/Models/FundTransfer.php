@@ -14,4 +14,9 @@ class FundTransfer extends Model
     {
     	return $this->belongsTo(User::class,'to_user_id','id');
     }
+
+    public function fromuser()
+    {
+    	return $this->belongsTo(User::class,'user_id','id');
+    }
 }

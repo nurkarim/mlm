@@ -40,7 +40,8 @@
          <li><a href='{{ route('admin.transaction') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Transaction History</span></a></li>
          <li><a href='{{ route('admin.fundHistory') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Funds History</span></a></li>
          <li><a href='{{ route('admin.withdrawalHistory') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Withdrawal History</span></a></li>
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Transfer History</span></a></li>
+         <li><a href='{{ route('admin.fundsTransfer') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Transfer History</span></a></li>
+         <li><a href='{{ route('admin.earningHistory') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_3">Commission History</span></a></li>
       </ul>
    </li>
     <li class="treeview" id="menu_4">
@@ -51,8 +52,8 @@
       <i class="fa fa-angle-left pull-right"></i></span>
       </a>
       <ul class="treeview-menu">
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_4">Active Withdrawal</span></a></li>
-         <li><a href='#'><i class="fa fa-circle-o"></i> <span parent-id="menu_4">Inactive Withdrawal</span></a></li>
+         <li><a href='{{ route('withdrawals.active') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_4">Active Withdrawal</span></a></li>
+         <li><a href='{{ route('withdrawals.inactive') }}'><i class="fa fa-circle-o"></i> <span parent-id="menu_4">Inactive Withdrawal</span></a></li>
       </ul>
    </li>
    <li class="treeview" id="menu_2">
