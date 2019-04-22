@@ -38,7 +38,7 @@ class CheckCoinpayment extends Command
      */
     public function handle()
     {
-        $data=CoinpaymentTransaction::where('status',0)->where('status',1)->get();
+        $data=CoinpaymentTransaction::where('status',0)->Orwhere('status',1)->get();
         foreach ($data as $key => $value) {
             CoinpaymentTransaction::updateTransaction($value->payment_id);
         }
