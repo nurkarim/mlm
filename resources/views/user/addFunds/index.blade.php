@@ -13,8 +13,8 @@
 			<tr>
 				<th>SL</th>
 				<th>Type</th>
-				<th>Amount</th>
-				<th>Stripe/Bitcoin Fee</th>
+				<th>Payment ID</th>
+				
 				<th>Total</th>
 				<th>Status</th>
 			</tr>
@@ -26,7 +26,8 @@
 				<td>{{ $i++ }}</td>
 				<td>@if($fund->type==1) Stripe @else Coinpayment @endif</td>
 				<td>{{ $fund->amount }}</td>
-				<td>{{ $fund->fee }}</td>
+				<td>@if($fund->type==1) {{ $fund->strip_charge_id }} @else {{ $fund->coinbase_charge_id }} @endif</td>
+				
 				<td>{{ $fund->total }}</td>
 				<td>@if($fund->status==1) Approved @else Pending @endif</td>
 			
