@@ -42,7 +42,7 @@ class CoinpaymentTransaction extends Model
 
           AddFundsWallet::create([
                         'user_id'=>$value->user_id,
-                        'type'=>1,
+                        'type'=>2,
                         'coinbase_charge_id'=>$value->payment_id,
                         'coinbase_wallet_address'=>$value->payment_address,
                         'amount'=>$value->usd_amount,
