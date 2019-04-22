@@ -25,7 +25,6 @@
 			<tr>
 				<td>{{ $i++ }}</td>
 				<td>@if($fund->type==1) Stripe @else Coinpayment @endif</td>
-				<td>{{ $fund->amount }}</td>
 				<td>@if($fund->type==1) {{ $fund->strip_charge_id }} @else {{ $fund->coinbase_charge_id }} @endif</td>
 				
 				<td>{{ $fund->total }}</td>
