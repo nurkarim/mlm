@@ -18,11 +18,17 @@
       </ul>
    </li>
     <li>
-      <a href='{{ route('discounts.index') }}'>
-      <img src="{{ asset('public/icons/promotion.png') }}" class="icon" alt="dashboard">
-      <span>Discounts</span>
+      <a href='{{ route('register.requestList') }}'>
+      <img src="{{ asset('public/icons/programming.png') }}" class="icon" alt="dashboard">
+      <span> Code Request List</span>
       </a>
-   </li>
+   </li>   
+   <li>
+      <a href='{{ route('register.indexReg') }}'>
+      <img src="{{ asset('public/icons/promotion.png') }}" class="icon" alt="dashboard">
+      <span>Registration Code</span>
+      </a>
+   </li>    
    <li>
       <a href='{{ route('ebooks.index') }}'>
       <img src="{{ asset('public/icons/ebook.png') }}" class="icon" alt="dashboard">

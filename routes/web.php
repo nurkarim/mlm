@@ -16,6 +16,10 @@ Route::get('register', function() {
     return view('register');
 })->name('register');
 
+Route::post('requestCode', 'Auth\RegisterController@requestCode')->name('requestCode.store');
+Route::get('/requestCode', function () {
+    return view('requestCode');
+});
 // ================================user portal=======================
 Route::get('/email/verify/{token}', 'Auth\RegisterController@verifyUser');
 Route::group(['prefix' => 'dashboard','middleware'=>'auth'], function() {

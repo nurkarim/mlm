@@ -1,3 +1,22 @@
+<style type="text/css">
+  .register-dropdown{
+    padding-top: 8px;
+    padding-left: 10px;
+    text-transform: uppercase;
+  }
+  .register-dropdown a{
+    text-decoration: none;
+  }
+  .register-dropdown >.dropdown-menu{
+
+    min-width: 239px!important;
+  } 
+  .register-dropdown >.dropdown-menu li a{
+    padding-left: 5px;
+    color: black;
+    font-size: 14px;
+  }
+</style>
 <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top main-nav">
         <div class="container">
@@ -30,7 +49,12 @@
             <li class="nav-item "><a href="{{ route('login') }}" class="nav-link"><span style="color:#968145"><i class="fa fa-arrow-right"></i> Login</span></a></li>
             @endif
 
-            <li class="nav-item "><a href="{{ route('register') }}" class="nav-link"><span style="color:#968145"><i class="fa fa-check-circle-o"></i> Register Now</span></a></li>
+            <li class="nav-item dropdown register-dropdown"><a href="#"  data-toggle="dropdown" class="dropdown-toggle" class="nav-link"><span style="color:#968145"><i class="fa fa-check-circle-o"></i> Register Now</span></a>
+                <ul class="dropdown-menu">
+        <li><a href="{{ url('requestCode') }}">Need a Registration Code?</a></li>
+        <li><a href="{{ route('register') }}">Got Code, Go to Registration</a></li>
+    </ul>
+            </li>
           </ul>
         </div>
 

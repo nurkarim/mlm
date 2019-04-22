@@ -12,6 +12,12 @@ Route::get('discounts', 'DiscountConytroller@index')->name('discounts.index');
 Route::post('discounts', 'DiscountConytroller@store')->name('discounts.store');
 Route::post('discountDelete', 'DiscountConytroller@delete')->name('discounts.delete');
 Route::get('checkUserName', 'DiscountConytroller@checkUserName')->name('userName.check');
+
+Route::get('makeRegistrationCode', 'DiscountConytroller@indexReg')->name('register.indexReg');
+Route::get('requestCodeList', 'DiscountConytroller@requestCodeList')->name('register.requestList');
+Route::get('requestCodeList/{id}', 'DiscountConytroller@requestCodeEdit')->name('register.requestEdit');
+Route::post('requestCodeList', 'DiscountConytroller@requestUpdate')->name('register.requestUpdate');
+
 // ===================End Discount Admin================
 
 // ===================Ebooks================

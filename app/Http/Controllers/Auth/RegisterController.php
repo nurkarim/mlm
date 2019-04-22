@@ -11,6 +11,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\Genealogy;
 use App\Models\Discount;
 use App\User;
+use App\RequestCode;
 use App\Mail\Resitration;
 use DB;
 use Mail;
@@ -42,6 +43,28 @@ class RegisterController extends Controller
         return response()->json([
                 'status'=>false,
             ]);
+    }
+
+    public function requestCode(Request $request)
+    {
+       try {
+          DB::beginTransaction();
+          $save=new RequestCode();
+          $save->full_name=$request->fullName;
+          $save->email=$request->email;
+          $save->save();
+          if ($save) {
+           $request->session()->flash('success', 'Request successfully.');
+          }else{
+           $request->session()->flash('error', 'Something wrong!');
+          }
+          DB::commit();
+          return back(); 
+         } catch (Exception $e) {
+              DB::rollback();
+             $request->session()->flash('error', 'Something wrong!');
+             return back(); 
+        }
     }
 
     public function store(UserRequest $request)
@@ -110,7 +133,6 @@ class RegisterController extends Controller
              $request->session()->flash('success', "Registration successfully");
              return back();
             } catch (Exception $e) {
-                return $e;
               DB::rollback();
              $request->session()->flash('error', 'Something wrong!');
              return back(); 

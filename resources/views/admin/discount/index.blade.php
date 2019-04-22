@@ -4,18 +4,18 @@
 <div class="box box-solid">
 	<div class="box-header with-border">
 		<i class="fa fa-plus"></i>
-		<h4 class="box-title">Discounts</h4>
+		<h4 class="box-title">Make Registration Code</h4>
 	</div>
 	<div class="box-body form-horizental">
 	<form method="post" action="{{ route('discounts.store') }}">
 		@csrf
 		<div class="col-md-6">
 		<div class="form-group">
-			<label>User name</label>
-			<input type="text" name="user_name" onchange="checkUserName()" id="user_name" class="form-control">
+			<label>Email</label>
+			<input type="text" name="email"  id="email" class="form-control">
 		</div>
 		<div class="form-group">
-			<label>Promo Code</label>
+			<label>Get Code</label>
 		<div class="input-group">
               <input type="text" id="code" class="form-control code-null" name="code"  autocomplete="off">
                 <span class="input-group-btn">
@@ -25,7 +25,7 @@
          </div>
 		</div>
 		<div class="form-group">
-			<button class="btn btn-save btn-primary"><i class="fa fa-save"></i> Save</button>
+			<button class="btn btn-save btn-primary"><i class="fa fa-save"></i> Save with send</button>
 		</div>
 		</div>
 	</form>
@@ -35,7 +35,7 @@
 <div class="box box-solid">
 	<div class="box-header with-border">
 		<i class="fa fa-desktop"></i>
-		<h4 class="box-title">Discounts List</h4>
+		<h4 class="box-title">Registration Code List</h4>
 	</div>
 	<div class="box-body form-horizental">
 	<div class="table-responsive">
@@ -43,7 +43,7 @@
 		<thead>
 			<tr>
 				<th>SL</th>
-				<th>User</th>
+				<th>Email</th>
 				<th>Code</th>
 				<th>Status</th>
 				<th>Action</th>
@@ -51,10 +51,10 @@
 		</thead>
 		<tbody>
 			<?php $i=1; ?>
-		@foreach($discounts as $discount)
+		   @foreach($discounts as $discount)
 		 <tr>
 				<td>{{ $i++ }}</td>
-				<td>{{ $discount->user->user_name }}</td>
+				<td>{{ $discount->email }}</td>
 				<td>{{ $discount->code }}</td>
 				<td>
 					@if($discount->status==1)
