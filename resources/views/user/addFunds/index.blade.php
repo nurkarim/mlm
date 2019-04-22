@@ -14,7 +14,6 @@
 				<th>SL</th>
 				<th>Type</th>
 				<th>Payment ID</th>
-				
 				<th>Total</th>
 				<th>Status</th>
 			</tr>
@@ -28,7 +27,7 @@
 				<td>@if($fund->type==1) {{ $fund->strip_charge_id }} @else {{ $fund->coinbase_charge_id }} @endif</td>
 				
 				<td>{{ $fund->total }}</td>
-				<td>@if($fund->status==1) Approved @else Pending @endif</td>
+				<td>Approved</td>
 			
 			</tr>
 		@endforeach

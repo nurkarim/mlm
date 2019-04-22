@@ -77,7 +77,7 @@
             <td>{{ $i++ }}</td>
             <td>@if($fund->type==1) Stripe @else Coinpayment @endif</td>
             <td>{{ $fund->amount }}</td>
-            <td>@if($fund->status==1) Approved @else Pending @endif</td>
+            <td>Approved</td>
          
          </tr>
       @endforeach
