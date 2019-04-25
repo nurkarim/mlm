@@ -9,14 +9,13 @@ Route::get('commissions', 'CommissionSettingsController@index')->name('commissio
 Route::post('commissions', 'CommissionSettingsController@store')->name('commission.store');
 // ===================Discount Admin================
 Route::get('discounts', 'DiscountConytroller@index')->name('discounts.index');
-Route::post('discounts', 'DiscountConytroller@store')->name('discounts.store');
 Route::post('discountDelete', 'DiscountConytroller@delete')->name('discounts.delete');
 Route::get('checkUserName', 'DiscountConytroller@checkUserName')->name('userName.check');
 
-Route::get('makeRegistrationCode', 'DiscountConytroller@indexReg')->name('register.indexReg');
+Route::get('discountPurchaseList', 'DiscountConytroller@indexReg')->name('register.indexReg');
 Route::get('requestCodeList', 'DiscountConytroller@requestCodeList')->name('register.requestList');
-Route::get('requestCodeList/{id}', 'DiscountConytroller@requestCodeEdit')->name('register.requestEdit');
-Route::post('requestCodeList', 'DiscountConytroller@requestUpdate')->name('register.requestUpdate');
+Route::post('requestCodeList/delete', 'DiscountConytroller@requestCodeDelete')->name('requestCode.delete');
+
 
 // ===================End Discount Admin================
 
@@ -52,4 +51,8 @@ Route::get('activeWithdrawal', 'WithdrawalController@activeWithdrawal')->name('w
 Route::get('activeWithdrawalAjax', 'WithdrawalController@activeWithdrawalAjax')->name('withdrawals.activeAjax');
 Route::get('inactiveWithdrawal', 'WithdrawalController@inactiveWithdrawal')->name('withdrawals.inactive');
 Route::get('inactiveWithdrawalAjax', 'WithdrawalController@inactiveWithdrawalAjax')->name('withdrawals.inactiveAjax');
+Route::get('profile', 'AdminController@profile')->name('admin.profile');
+Route::post('profile/save', 'AdminController@save')->name('admin.profileUpdate');
+Route::get('passwordChange', 'AdminController@passwordChange')->name('admin.passwordChange');
+Route::post('passwordChange', 'AdminController@passwordChangeSave')->name('admin.passwordChangeSave');
 });

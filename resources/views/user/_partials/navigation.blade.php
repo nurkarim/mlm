@@ -32,7 +32,7 @@
    <li>
       <a href='{{ route('user.discount') }}'>
       <img src="{{ asset('public/icons/promotion.png') }}" class="icon" alt="dashboard">
-      <span>Discounts</span>
+      <span>Purchase</span>
       </a>
    </li>
    <li>

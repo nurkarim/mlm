@@ -20,13 +20,13 @@
     <li>
       <a href='{{ route('register.requestList') }}'>
       <img src="{{ asset('public/icons/programming.png') }}" class="icon" alt="dashboard">
-      <span> Code Request List</span>
+      <span>Request List</span>
       </a>
    </li>   
    <li>
       <a href='{{ route('register.indexReg') }}'>
       <img src="{{ asset('public/icons/promotion.png') }}" class="icon" alt="dashboard">
-      <span>Registration Code</span>
+      <span>Discounts</span>
       </a>
    </li>    
    <li>
@@ -75,9 +75,15 @@
       </ul>
    </li>
     <li>
-      <a href='#'>
+      <a href='{{ route('admin.profile') }}'>
       <img src="{{ asset('public/icons/profile.png') }}" class="icon" alt="dashboard">
       <span>Profile</span>
+      </a>
+   </li>   
+   <li>
+      <a href='{{ route('admin.passwordChange') }}'>
+      <img src="{{ asset('public/icons/permission.png') }}" class="icon" alt="dashboard">
+      <span>Password Change</span>
       </a>
    </li>
     <li>

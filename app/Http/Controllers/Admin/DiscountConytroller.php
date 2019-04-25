@@ -12,23 +12,20 @@ use App\RequestCode;
 use DB;
 use Auth;
 use Mail;
+use Illuminate\Contracts\Validation\Rule;
 class DiscountConytroller extends Controller
 {
-    public function requestCodeEdit($id)
-    {
-    	$codeRequest=RequestCode::find($id);
-    	return view('admin.discount.requestCodeEdit',compact('codeRequest'));
-    }
+ 
 
     public function requestCodeList()
     {
-        $codeRequest=RequestCode::get();
+        $codeRequest=RequestCode::orderBy('id','DESC')->get();
         return view('admin.discount.requestCodeList',compact('codeRequest'));
     }
 
     public function indexReg()
     {
-        $discounts=Discount::where('user_type',0)->orWhere('user_type',2)->get();
+        $discounts=Discount::orderBy('status','ASC')->get();
         return view('admin.discount.index',compact('discounts'));
     }
 
@@ -45,15 +42,14 @@ class DiscountConytroller extends Controller
     		]);
     }
 
-    public function requestUpdate(Request $request)
+    public function requestCodeDelete(Request $request)
     {
         try {
              DB::beginTransaction();
-             $update=RequestCode::find($request->id);
-             $update->status=$request->status;
-             $update->save();
+             $delete=RequestCode::find($request->id);
+             $delete->delete();
              DB::commit();
-             $request->session()->flash('success', "Update successfully");
+             $request->session()->flash('success', "Delete successfully");
              return back();
             } catch (Exception $e) {
               DB::rollback();
@@ -67,32 +63,41 @@ class DiscountConytroller extends Controller
     	try {
 
             DB::beginTransaction();
+
+            $this->validate($request, [
+                'code' => 'required|unique:discount_code',
+                'amount' => 'required|checkFunds',
+               ]);
             
+            if (Auth::user()->funds_amount < 0.50) {
+                $request->session()->flash('error', 'Sorry!Your wallet empty.');
+                return back();
+            }
             $save=new Discount();
             $save->code=$request->code;
-            $save->email=$request->email;
             $save->user_id=Auth::id();
-            $save->amount=0;
-            $save->user_type=0;
+            $save->amount=0.50;
+            $save->user_type=1;
             $save->save();
-            $check=RequestCode::where('email',$request->email)->orderBy('id','DESC')->first();
-            if ($check) {
-             $update=RequestCode::find($check->id);
-             $update->status=1;
-             $update->save();
-             $data=[
-                'name'=>$check->full_name,
-                'code'=>$request->code,
-            ];
-             Mail::to($request->email)->send(new Notification($data));
-            }
+            Auth::user()->decrement('funds_amount', $save->amount);
+            Transaction::create([
+                    'user_id'=>Auth::id(),
+                    'type'=>5,
+                    'note'=>'Purchase Discount Code "'.$request->code.'"',
+                    'amount'=>$save->amount,
+                    'total'=>$save->amount,
+                    'from'=>'Funds Wallet',
+                    'to'=>'Admin',
+                    'status'=>1,
+                    ]);
+
             DB::commit();
-            $request->session()->flash('success', "Save successfully");
+            $request->session()->flash('success', "Discount code purchase successfully");
             return back();
             } catch (Exception $e) {
               DB::rollback();
-             $request->session()->flash('error', 'Something wrong!');
-             return back(); 
+              $request->session()->flash('error', 'Something wrong!');
+              return back(); 
         }
     }
 

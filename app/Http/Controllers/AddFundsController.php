@@ -174,11 +174,31 @@ class AddFundsController extends Controller
             $request->session()->flash('error', 'Sorry!something was wrong.Please try again latter.');
                 }
     	}
-        DB::commit();
-           
-        return back();
-        } catch (Exception $e) {
-                
+            DB::commit();
+            return back();
+             }catch(\Stripe\Error\Card $e) {
+                 $body = $e->getJsonBody();
+                 $err  = $body['error'];
+                $request->session()->flash('error', $err['message']);
+                 return back();
+              }catch (\Stripe\Error\RateLimit $e) {
+             $request->session()->flash('error', 'Too many requests made to the API too quickly');
+             return back();
+        
+            } catch (\Stripe\Error\InvalidRequest $e) {
+                $request->session()->flash('error', 'Invalid parameters were supplied to Stripe API');
+             return back();
+            } catch (\Stripe\Error\Authentication $e) {
+                 $request->session()->flash('error', "Authentication with Stripe's API failed. (maybe you changed API keys recently)");
+               return back();
+            } catch (\Stripe\Error\ApiConnection $e) {
+                $request->session()->flash('error', "Network communication with Stripe failed");
+               return back();
+             
+            } catch (\Stripe\Error\Base $e) {
+             $request->session()->flash('error', "Display a very generic error to the user, and maybe send");
+               return back();
+            } catch (Exception $e) {
               DB::rollback();
              $request->session()->flash('error', 'Something wrong!');
              return back(); 

@@ -134,7 +134,7 @@ width: auto;
 }
 </style>
 <div class="col-md-12">
-    <div class="genealogy text-center" >
+    <div class="genealogy text-center" style="overflow: auto;">
         <ul>
             <li>
                 <a href="#" style="color: blue">

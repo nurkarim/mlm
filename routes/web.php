@@ -40,7 +40,7 @@ Route::group(['prefix' => 'dashboard','middleware'=>'auth'], function() {
     Route::get('transactions', 'HistroyController@transactionHistory')->name('user.transaction');
     Route::get('my-discount', 'HistroyController@discounts')->name('user.discount');
     Route::get('my-earning', 'HistroyController@commission')->name('earning.index');
-
+    Route::post('discounts', 'Admin\DiscountConytroller@store')->name('discounts.store');
     // =======================================usercontroller===========================
     Route::get('my-profile', 'UserController@myProfile')->name('user.profile');
     Route::post('my-profile', 'UserController@saveProfile')->name('user.profileUpdate');

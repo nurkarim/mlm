@@ -24,13 +24,13 @@ class HistroyController extends Controller
 
     public function discounts()
     {
-        $data=Discount::where('user_id',Auth::id())->get();
+        $data=Discount::where('user_id',Auth::id())->orderBy('id','DESC')->get();
         return view('user.discounts.index',compact('data'));
     }
 
     public function commission()
     {
-        $data=ReferralCommission::where('user_id',Auth::id())->get();
+        $data=ReferralCommission::where('user_id',Auth::id())->orderBy('id','DESC')->get();
         return view('user.commission.index',compact('data'));
     }
 }

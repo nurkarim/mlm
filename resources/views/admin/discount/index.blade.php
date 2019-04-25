@@ -1,41 +1,12 @@
 @extends('admin.index')
 @section('content')
 
-<div class="box box-solid">
-	<div class="box-header with-border">
-		<i class="fa fa-plus"></i>
-		<h4 class="box-title">Make Registration Code</h4>
-	</div>
-	<div class="box-body form-horizental">
-	<form method="post" action="{{ route('discounts.store') }}">
-		@csrf
-		<div class="col-md-6">
-		<div class="form-group">
-			<label>Email</label>
-			<input type="text" name="email"  id="email" class="form-control">
-		</div>
-		<div class="form-group">
-			<label>Get Code</label>
-		<div class="input-group">
-              <input type="text" id="code" class="form-control code-null" name="code"  autocomplete="off">
-                <span class="input-group-btn">
-                <button type="button"  readonly="true" class="btn btn-flat generate">Generate
-                </button>
-              </span>
-         </div>
-		</div>
-		<div class="form-group">
-			<button class="btn btn-save btn-primary"><i class="fa fa-save"></i> Save with send</button>
-		</div>
-		</div>
-	</form>
-    </div>
-</div>
+
 
 <div class="box box-solid">
 	<div class="box-header with-border">
 		<i class="fa fa-desktop"></i>
-		<h4 class="box-title">Registration Code List</h4>
+		<h4 class="box-title">Purchase Discount List</h4>
 	</div>
 	<div class="box-body form-horizental">
 	<div class="table-responsive">
@@ -43,10 +14,12 @@
 		<thead>
 			<tr>
 				<th>SL</th>
-				<th>Email</th>
+			    <th>Date</th>
+				<th>Username</th>
 				<th>Code</th>
+				<th>Amount</th>
 				<th>Status</th>
-				<th>Action</th>
+		
 			</tr>
 		</thead>
 		<tbody>
@@ -54,8 +27,10 @@
 		   @foreach($discounts as $discount)
 		 <tr>
 				<td>{{ $i++ }}</td>
-				<td>{{ $discount->email }}</td>
+				<td>{{ $discount->created_at->format('Y-m-d') }}</td>
+				<td>{{ $discount->user->user_name }}</td>
 				<td>{{ $discount->code }}</td>
+				<td>{{ $discount->amount }}</td>
 				<td>
 					@if($discount->status==1)
 					<span class="label label-primary">Used</span>
@@ -63,13 +38,13 @@
 					<span class="label label-danger">Unused</span>
 					@endif
 				</td>
-				<td>
+			{{-- 	<td>
 				<form method="post" action="{{ route('discounts.delete') }}">
 					@csrf
 					<input type="hidden" name="id" value="{{ $discount->id }}">
 					<button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('Are you sure you want to delete?');"><i class="fa fa-trash"></i></button>
 				</form>	
-				</td>
+				</td> --}}
 		</tr>
 		@endforeach
 		</tbody>
@@ -81,65 +56,6 @@
 .error{border: 1px solid red;}
 .success{border: 1px solid green;}
 </style>
-<input class="possible" type="hidden" placeholder="Possible characters" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789">
-@section('js')
-<script type="text/javascript">
-var generated = [],
-    possible  = $(".possible").val() ? $(".possible").val() : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-function generateCodes(number, length) {
-	generated=[];
-   $("#code").val(" ");
-  for ( var i=0; i < number; i++ ) {
-    generateCode(length);
-  }
- 	
-  $("#code").val(generated.join("\n"));
 
-}
-function generateCode(length) {
-  var text = "";
-
-  for ( var i=0; i < length; i++ ) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-
-  if ( generated.indexOf(text) == -1 ) {
-    generated.push(text);
-  }else {
-    generateCode();
-  }
-}
-$(".generate").on("click", function(e) {
-
-  var num = $(".count").val() ? $(".count").val() : 1,
-      len = $(".length").val() ? $(".length").val() : 6;
-      possible  = $(".possible").val() ? $(".possible").val() : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      
-  generateCodes(num, len);
-  
-  
-});
-
-// ============================check user name=====================
-	function checkUserName() {
-    		var userName=$("#user_name").val();
-    		       $.ajax({
-                type: 'GET',
-                async:false,
-                url: '{{ route('userName.check') }}?userName='+userName,
-                dataType: "json",
-                success: function(data) {
-                if (data.status==true) {
-					$('#user_name').removeClass('error').addClass('success');
-                	}else{
-					$('#user_name').removeClass('success').addClass('error');
-                	}
-                },
-                error: function(data) {
-                }
-            });
-    	}
-</script>
-@endsection
 
 @endsection

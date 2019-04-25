@@ -26,14 +26,11 @@
 				<td>{{ $value->full_name }}</td>
 				<td>{{ $value->email }}</td>
 				<td>
-					@if($value->status==1)
-					<span class="label label-primary">Send</span>
-					@else
-					<span class="label label-info">New Request</span>
-					@endif
-				</td>
-				<td>
-				<button class="btn bnt-xs btn-primary btn-xs" data-toggle="modal" data-target="#modal" onclick="loadModal('{{route('register.requestEdit',$value->id)}}')"> Action </button>
+				<form method="post" action="{{ route('requestCode.delete') }}">
+					@csrf
+					<input type="hidden" name="id" value="{{ $value->id }}">
+					<button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('Are you sure you want to delete?');"><i class="fa fa-trash"></i></button>
+				</form>	
 				</td>
 		</tr>
 		@endforeach

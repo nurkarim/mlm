@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Validator;
+use Auth;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('checkFunds', function($attribute, $value, $parameters) {
+            return Auth::user()->funds_amount > $value;
+        });
     }
 }
