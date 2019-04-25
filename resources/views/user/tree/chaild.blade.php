@@ -6,7 +6,7 @@
   ?>
   @foreach($childs as $child)
   <li>
-    <a style="color: blue">
+    <a href="{{ route('genealogy.show',$child->id) }}" style="color: blue">
       <div class="container-fluid">
         <div class="text-center" >
           <i class="fa fa-user fa-2x user-icon"></i>
