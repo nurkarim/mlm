@@ -22,7 +22,7 @@
         <div class="container">
         <a class=" navbar-band"  href="#"><img class="logo" src="{{ asset('public/ui/img/logo.png') }}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class=""><i style="color: red;font-size: 35px;" class="fa fa-bars"></i></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
 

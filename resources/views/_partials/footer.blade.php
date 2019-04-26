@@ -35,6 +35,8 @@
         }, 1000);
         return false;
       });
+
+      
   </script> 
 
 @yield('js')

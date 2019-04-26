@@ -12,6 +12,15 @@ use Mail;
 use App\Models\ReferralCommission;
 class MemberController extends Controller
 {
+
+    public function genealogy($slug)
+    {
+        $usr=User::where('user_name',$slug)->first();
+        $users=User::where('placement_id',$usr->id)->get();
+        $user=User::find($usr->id);
+        return view('admin.tree.index',compact('users','user'));
+    }
+
     public function index()
     {
     	$users=User::where('user_type',1)->where('status',1)->get();

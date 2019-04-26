@@ -13,6 +13,7 @@
     <link href="{{ asset('public/ui/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('public/ui/css/responsive.css') }}" rel="stylesheet">
         <script src="{{asset('public/theme1/js/jquery.min.js')}}"></script>
+    <link href="{{ asset('public/css/animation.css') }}" rel="stylesheet">
 
     <title>Infinite-Funds</title>
   </head>
@@ -22,5 +23,8 @@
   @yield('content')
    
 @include('_partials.footer')
+<style type="text/css">
+  
+</style>
   </body>
 </html>

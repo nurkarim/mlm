@@ -58,13 +58,14 @@
       </div>
     </div>
     </section>
- <div id="demo" style="text-align: center;font-size: 60px;font-weight: bold;color:#b8aa84"></div>
+ <div id="demo"  style="text-align: center;font-size: 60px;font-weight: bold;color:#b8aa84"></div>
  
     <section class="intro" style="padding: 29px 0px 100px 0px;">
       <div class="container">
       <div class="row text-center">
         <div class="col-md-12 wow fadeIn" data-wow-duration="1s">
-         <p style="font-size:22px;">Let us help you raise the funds you need, whether it be to start a new business, take the vacation of your dreams, or to pay the rent.  We got you covered!</p>
+         <p  style="font-size:22px;">Let us help you raise the funds you need, whether it be to start a new business, take the vacation of your dreams, or to pay the rent.  We got you covered!</p>
+
                   </div>
         </div>
         
@@ -100,7 +101,7 @@
       <div class="container">
         <div class="row text-center">
           <div class="col-md-12 wow fadeIn" data-wow-duration="1s">
-            <h4>Take the emotion (greed and fear) out of your trade while you are learning.</h4>
+            <h4 class="line-1 anim-typewriter">Take the emotion (greed and fear) out of your trade while you are learning.</h4>
           </div>
         </div>
       </div>

@@ -73,6 +73,11 @@ class User extends Authenticatable
         return $this->belongsTo(User::class,'placement_id','id');
     }
 
+    public function placementCount()
+    {
+        return $this->hasMany(User::class,'placement_id','id');
+    }
+
     public function referralUser()
     {
         return $this->hasMany(User::class,'referral_id','id');

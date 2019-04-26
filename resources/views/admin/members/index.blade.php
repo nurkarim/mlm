@@ -17,6 +17,8 @@
 				<th>Position ID</th>
 				<th>Funding Wallet</th>
 				<th>Status</th>
+				<th>Direct Member</th>
+				<th>Genealogy</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,6 +31,8 @@
 				<td><a href="{{ route('members.show',$user->placement_id) }}">{{ $user->placementUser->user_name }}</a></td>
 				<td>{{ $user->funds_amount }}</td>
 				<td><label class="label label-success">Active</label></td>
+				<td>{{ $user->placementCount->count() }}</td>
+				<td><a href="{{ route('admin.genealogy',$user->user_name) }}"><i class="fa fa-sitemap"></i></a></td>
 				
 			</tr>
 		@endforeach

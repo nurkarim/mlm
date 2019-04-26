@@ -55,4 +55,6 @@ Route::get('profile', 'AdminController@profile')->name('admin.profile');
 Route::post('profile/save', 'AdminController@save')->name('admin.profileUpdate');
 Route::get('passwordChange', 'AdminController@passwordChange')->name('admin.passwordChange');
 Route::post('passwordChange', 'AdminController@passwordChangeSave')->name('admin.passwordChangeSave');
+
+Route::get('genealogy/{user_name}', 'MemberController@genealogy')->name('admin.genealogy');
 });
