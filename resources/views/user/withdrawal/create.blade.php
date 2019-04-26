@@ -58,9 +58,9 @@
 </div>
 <b>Note:</b><br>
 <li>Provide your valid bitcoin address</li>
-<li>Minimum withdrawal request is USD 50.00</li>
+<li>Minimum withdrawal request is USD $5.00</li>
 <li>Processing time is at least 3-5 days</li>
-<li>10% on the withdrawal amount or USD50 whichever higher</li>
+<li>Withdraw fee is 10% on the withdraw amount or USD $0.50 whichever is higher</li>
 <li>Withdrawal will be calculated every month from 1st to 7th. Payment will be on the  10th of each month (Additional business day needed should there be any Public Holiday)</li>
 <style type="text/css">
 .card_form{display: none;}
