@@ -13,10 +13,14 @@ use App\Models\Discount;
 use App\User;
 use App\RequestCode;
 use App\Mail\Resitration;
+use App\Models\Commission;
+use App\Models\Transaction;
+use App\Models\ReferralCommission;
 use DB;
 use Mail;
 use Auth;
 use Redirect;
+use Session;
 class RegisterController extends Controller
 {
     public function checkPosition(Request $request)
@@ -117,6 +121,8 @@ class RegisterController extends Controller
                 'created_at'=>$user->created_at,
                 'link'=>url('/').'/email/verify/'.$token,
             ];
+            $amount=0.50;
+            $this->unilevel($amount,$user->id);
             Mail::to($request->email)->send(new Resitration($data));
             DB::commit();
               if (Auth::check()) {
@@ -137,6 +143,75 @@ class RegisterController extends Controller
              $request->session()->flash('error', 'Something wrong!');
              return back(); 
         }
+    }
+
+
+    public $latestLevel;
+    public $array;
+    public function checkLevel($uid, $referId, $i)
+    {
+
+        $user = User::find($uid);
+        if ($user) {
+
+            if ($referId == $user->placement_id) {
+                $this->latestLevel = $i;
+            }
+            $i++;
+            self::checkLevel($user->placement_id, $referId, $i);
+        }
+    }
+
+    public function unilevelMember($id, $level)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $use = User::where('id',$user->placement_id)->first();
+            if($use){
+
+            $this->array[] = [
+                'id' => $user->id,
+                'user_id' => $user->placement_id,
+            ];
+        }
+            if ($level <= 12) {
+                $level++;
+                self::unilevelMember($user->placement_id, $level);
+            }
+
+        }
+    }
+
+    public function unilevel($amount, $user_ID)
+    {
+      self::unilevelMember($user_ID, 1);
+      $levelSettings = Commission::all();
+      $collect = collect($levelSettings);
+      foreach ($this->array as $key => $value) {
+       self::checkLevel($user_ID, $value['user_id'], 1);
+       $getLev = $collect->where('level_id', $this->latestLevel)->first();
+       $ernamount = ($amount * $getLev->percent) / 100;
+         $getAmount = intval(($ernamount * 100)) / 100;
+         Transaction::create([
+          'user_id'=>$value['user_id'],
+          'type'=>2,
+          'note'=>'Earning level commission',
+          'amount'=>$getAmount,
+          'total'=>$getAmount,
+          'from'=>'Admin',
+          'to'=>'Withdrawal Wallet',
+          'position_level'=>$this->latestLevel,
+          'who_join'=>$user_ID,
+          'status'=>1,
+         ]);
+         ReferralCommission::create([
+            'user_id'=>$value['user_id'],
+            'from_user_id'=>$user_ID,
+            'amount'=>$getAmount,
+            'level'=>$this->latestLevel,
+         ]);
+         $users=User::where('id',$value['user_id'])->increment('wallet_amount', $getAmount);
+      }
     }
 
     public function verifyUser($token)

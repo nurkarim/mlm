@@ -64,7 +64,9 @@
         <td align="center" valign="top">
           <table border="0" cellpadding="0" cellspacing="0" id="emailContainer">
                 <tr>
-                    <td align="center" valign="top" style="height: 100px"> </td>
+                    <td align="center" valign="top" style="height: 100px"> 
+                        <img src="https://infinite-funds.com/public/ui/img/logo.png" height="200" width="300">
+                    </td>
 
                 </tr>
                 <tr>
