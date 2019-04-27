@@ -16,12 +16,13 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-    	$activeMember=User::where('status',1)->where('user_type','!=',0)->count();
+    	$total_funds=User::sum('funds_amount');
+      $activeMember=User::where('status',1)->where('user_type','!=',0)->count();
     	$inactiveMember=User::where('status',0)->where('user_type','!=',0)->count();
     	$users=User::where('status',0)->where('user_type','!=',0)->get();
     	$twithdrawal=Withdrawal::where('status',1)->sum('total');
     	$withdrawals=Withdrawal::where('status',0)->get();
-        return view('admin._partials.app',compact('activeMember','inactiveMember','twithdrawal','users','withdrawals'));
+        return view('admin._partials.app',compact('activeMember','inactiveMember','twithdrawal','users','withdrawals','total_funds'));
     }
 
     public function profile()

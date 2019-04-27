@@ -12,7 +12,7 @@
          <span class="info-box-icon bg-aqua-gradient"><i class="fa fa-bank"></i></span>
          <div class="info-box-content">
             <span class="info-box-text">Total Funds</span>
-            <span class="info-box-number">0</span>
+            <span class="info-box-number">{{ $total_funds }}</span>
          </div>
       </div>
    </div>
