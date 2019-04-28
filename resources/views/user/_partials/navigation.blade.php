@@ -103,5 +103,12 @@
       <img src="{{ asset('public/icons/affiliate.png') }}">
       <span>Affiliate Links</span>
       </a>
+   </li>  
+
+   <li>
+      <a  href='{{ route('donation.create') }}'>
+    
+      <span class="btn btn-success"  style="font-weight: bold;font-size: 20px;width: 100%;margin-left: -10px;">$ Donation</span>
+      </a>
    </li>
 </ul>

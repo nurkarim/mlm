@@ -60,6 +60,8 @@ Route::group(['prefix' => 'dashboard','middleware'=>'auth'], function() {
 
     Route::get('coinpayment/funds/history', 'AddFundsController@coinpayment')->name('dashboard.coinpayment');
   
+  Route::get('donation', 'DonationController@create')->name('donation.create');
+  Route::post('donation', 'DonationController@store')->name('donation.post');
 
 });
 Route::get('testPage', function() {
@@ -67,4 +69,7 @@ Route::get('testPage', function() {
 });
 Route::post('testCoinbasesa', 'CoinPaymentsController@manual_check')->name('testCoinbase.check');
 Route::get('/affiliate/{user_name}', 'UserController@affiliate')->name('user.affiliate');
+Route::get('requestSuccess', function() {
+   return view('success');
+});
 

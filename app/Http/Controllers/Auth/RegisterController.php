@@ -63,7 +63,7 @@ class RegisterController extends Controller
            $request->session()->flash('error', 'Something wrong!');
           }
           DB::commit();
-          return back(); 
+          return redirect('requestSuccess'); 
          } catch (Exception $e) {
               DB::rollback();
              $request->session()->flash('error', 'Something wrong!');

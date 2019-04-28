@@ -130,7 +130,7 @@ class AddFundsController extends Controller
                 $charge = \Stripe\Charge::create([
                         'amount' => $val,
                         'currency' => 'usd',
-                        'description' => 'New Order charge',
+                        'description' => 'Add Funds into wallet',
                         'source' => $token,
                     ]);
              
