@@ -116,6 +116,8 @@ return [
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
     'check_funds' => 'Sorry! Your funds wallet amount has been zero',
+    'username' => "We can't find username.Please use your valid username",
+    
 
     /*
     |--------------------------------------------------------------------------

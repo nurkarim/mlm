@@ -40,7 +40,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <p class="text-center"><a class="btn btn-link" href="#">
+                                    <p class="text-center"><a class="btn btn-link" href="{{route('password.reset')}}">
                                     Forgot Your Password?
                                 </a> | <a href="#" class=" btn-link ">Register Now</a></p>
                                     

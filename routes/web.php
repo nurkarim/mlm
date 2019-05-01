@@ -11,6 +11,13 @@ Route::get('checkDiscountCode', 'Auth\RegisterController@checkDiscountCode')->na
 Route::post('register', 'Auth\RegisterController@store')->name('register.store');
 
 Route::get('storeCoinPayment', 'AddFundsController@storeCoinPayment')->name('storeCoinPayment');
+Route::post('passwordReset', 'Auth\ResetPasswordController@passwordUpdate')->name('password.update');
+Route::post('emailSend', 'Auth\ResetPasswordController@emailSend')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@passwordReset')->name('password.change');
+
+Route::get('password/reset', function() {
+    return view('passwords.email');
+})->name('password.reset');
 
 Route::get('register', function() {
     return view('register');
