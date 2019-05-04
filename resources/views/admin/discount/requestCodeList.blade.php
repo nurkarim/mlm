@@ -14,6 +14,7 @@
 				<th>SL</th>
 				<th>Full Name</th>
 				<th>Email</th>
+				<th>Username</th>
 				<th>Status</th>
 				
 			</tr>
@@ -25,6 +26,7 @@
 				<td>{{ $i++ }}</td>
 				<td>{{ $value->full_name }}</td>
 				<td>{{ $value->email }}</td>
+				<td>{{ $value->user_name }}</td>
 				<td>
 				<form method="post" action="{{ route('requestCode.delete') }}">
 					@csrf

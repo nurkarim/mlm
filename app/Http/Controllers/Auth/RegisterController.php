@@ -51,11 +51,17 @@ class RegisterController extends Controller
 
     public function requestCode(Request $request)
     {
+           $this->validate($request, [
+                'user_name' => 'required|min:9|max:9',
+                'fullName' => 'required',
+                'email' => 'required',
+               ]);
        try {
           DB::beginTransaction();
           $save=new RequestCode();
           $save->full_name=$request->fullName;
           $save->email=$request->email;
+          $save->user_name=$request->user_name;
           $save->save();
           if ($save) {
            $request->session()->flash('success', 'Request successfully.');
