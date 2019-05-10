@@ -1,3 +1,7 @@
+<?php
+$levelStop=13;
+$startLevel++;
+?>
 <ul>
   <?php
   $b=0;
@@ -12,7 +16,7 @@
           <i class="fa fa-user fa-2x user-icon"></i>
         </div>
         <div class="text-center">
-          {{ $child->user_name}} 
+          {{ $child->user_name}}
         </div>
         
         
@@ -22,7 +26,10 @@
     $chaildUsers=\App\Helper\Helper::members($child->id);
     ?>
     @if(count($chaildUsers)>0)
+    @if($startLevel==$levelStop)
+    @else
       @include('user.tree.chaild',['childs' => $chaildUsers,'myReferl'=>$myReferl])
+    @endif
     @endif
     <?php
     $b++;

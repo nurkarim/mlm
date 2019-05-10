@@ -2,10 +2,11 @@
 @section('breadcrumb')
 <h1>
    Dashboard
-   <small style="font-weight: bold;color: black">Genealogy</small>
+   <small style="font-weight: bold;color: black">Additional Matrix</small>
 </h1>
 @endsection
 @section('content')
+<link rel="stylesheet" type="text/css" href="{{ asset('public/css/tree.css') }}">
 <style type="text/css">
     
 /*#region Organizational Chart*/
@@ -74,8 +75,8 @@ width: 0; height: 20px;
 }
 .genealogy li a{
 height: 50px;
-width: 65px!important;
-padding: 2px 6px;
+    width: 58px!important;
+    padding: 2px 3px;
 text-decoration: none;
 background-color: white;
 color: #8b8b8b;
@@ -86,6 +87,8 @@ box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 -transition: all 0.5s;
 -webkit-transition: all 0.5s;
 -moz-transition: all 0.5s;
+border-radius: 10px;
+border:1px solid gold;
 }
 /*Time for some hover effects*/
 /*We will apply the hover effect the the lineage of the element also*/
@@ -132,9 +135,10 @@ width: auto;
   }
 
 }
+
 </style>
-<div class="col-md-12">
-    <div class="genealogy text-center" style="overflow: auto;">
+<div class="col-md-12 horizontal-scroll-wrapper" >
+    <div class="genealogy text-center " >
         <ul>
             <li>
                 <a href="#" style="color: blue">
@@ -143,7 +147,7 @@ width: auto;
                             <i class="fa fa-user fa-2x"></i>
                         </div>
                         <div class="text-center">
-                            {{ $user->user_name }}
+                            {{ $user->user_name }} 
                         </div>
                         {{-- <div class="text-center">
                             Rank: {{ $usera->memberShip->name }}
@@ -155,54 +159,72 @@ width: auto;
                 <ul>
                     <?php
                     $i=0;
+                    
                     $per=4;
                       $total=count($users);
                       $startLevel=1;
                     ?>
                     @if(count($users)>0)
                     @foreach($users as $uservalue)
-                    <li>
-                        <a href="{{ route('genealogy.show',$uservalue->id) }}" style="color: blue">
+                    <li id="level_{{$startLevel}}">
+                        <a href="{{ route('addMatrix4x3.find',$uservalue->user->id) }}" style="color: blue">
                             <div class="container-fluid">
                                 <div class="text-center" >
                                     <i class="fa fa-user fa-2x user-icon"></i>
                                 </div>
-                                <div class="">
-                                    {{ $uservalue->user_name}} 
+                                <div class="" style="font-size: 11px;">
+                                    {{ $uservalue->user->user_name}} 
                                 </div>
                             </div>
                         </a>
-                        <?php
+                       <?php
                         
-                        $chaildUsers=\App\Helper\Helper::members($uservalue->id);
+                        $chaildUsers=\App\Helper\Helper::membersFourIntoThree($uservalue->user->id);
                         $c=0;
+                         $j=0;
                         ?>
-                        @if(count($chaildUsers)>0)
-                        @include('user.tree.chaild',['childs' => $chaildUsers,'myReferl'=>$uservalue->id])
+                        @if(count($chaildUsers) > 0)
+                       
+                        @include('user.additionalMatrix.child',['childs' => $chaildUsers,'myReferl'=>$uservalue->user->id])
+        
                         @else
                        
-                        {{-- @include('layouts.matrix.allNull',['user' => $uservalue->user_id]) --}}
+                        @include('user.additionalMatrix.allNull',['user' => $uservalue->user->id])
                        
                         @endif
-
+     
                     </li>
-                </li>
+                
                 <?php
                 $i++;
                 ?>
                 @endforeach
                 @for(;$i<$per;$i++)
-                @include('user.tree.null',['user' => $user->id])
+                @include('user.additionalMatrix.null',['user' => $user->id])
                 @endfor
+                
                 @else
                 <?php $a=1; ?>
                 @for(;$a<=$per;$a++)
-                @include('user.tree.null',['user' => $user->id])
+                @include('user.additionalMatrix.null',['user' => $user->id])
                 @endfor
                 @endif
             </ul>
         </li>
     </ul>
+   
 </div>
 </div>
+@section('js')
+<script type="text/javascript">
+ $(function () {
+    $('.wrapper1').on('scroll', function (e) {
+        $('.wrapper2').scrollLeft($('.wrapper1').scrollLeft());
+    }); 
+    $('.wrapper2').on('scroll', function (e) {
+        $('.wrapper1').scrollLeft($('.wrapper2').scrollLeft());
+    });
+});
+</script>
+@endsection
 @endsection

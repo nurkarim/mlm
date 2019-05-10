@@ -1,6 +1,7 @@
 <?php
 namespace App\Helper;
 use App\User;
+use App\AdditionalMatrix;
 class Helper 
 {
 	
@@ -31,6 +32,10 @@ class Helper
     public static function members($id)
     {
         return $dd=User::where('placement_id',$id)->get();
+    } 
+    public static function membersFourIntoThree($id)
+    {
+        return $dd=AdditionalMatrix::where('placement_id',$id)->get();
     }
 
 

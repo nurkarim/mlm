@@ -69,6 +69,12 @@ Route::group(['prefix' => 'dashboard','middleware'=>'auth'], function() {
   
   Route::get('donation', 'DonationController@create')->name('donation.create');
   Route::post('donation', 'DonationController@store')->name('donation.post');
+  Route::get('additionalMatrix', 'AdditionalMatrixController@index')->name('additionalMatrix.index');
+  Route::get('additionalMatrix4x3', 'AdditionalMatrixController@view4x3')->name('additionalMatrix.4x3');
+  Route::get('additionalMatrix4x3Add/{id}', 'AdditionalMatrixController@createFourIntoThree')->name('addMatrix4x3.create');
+  Route::post('additionalMatrixFourIntoThreeSave', 'AdditionalMatrixController@storeFourIntoThree')->name('addMatrix4x3.store');
+  Route::get('additionalMatrixUser/{id}', 'AdditionalMatrixController@findFourIntoThree')->name('addMatrix4x3.find');
+
 
 });
 Route::get('testPage', function() {

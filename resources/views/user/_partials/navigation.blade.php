@@ -11,6 +11,12 @@
       <span>Genealogy</span>
       </a>
    </li> 
+    <li>
+      <a href='{{ route('additionalMatrix.index') }}'>
+      <img src="{{ asset('public/icons/tree.png') }}" class="icon" alt="dashboard">
+      <span>Additional Matrix</span>
+      </a>
+   </li> 
    <li>
       <a href='{{ route('position.create') }}'>
       <img src="{{ asset('public/icons/buy.png') }}" class="icon" alt="dashboard">
