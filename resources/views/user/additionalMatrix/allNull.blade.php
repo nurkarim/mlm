@@ -11,7 +11,7 @@
                                             <i class="fa fa-user fa-2x user-icon"></i>
                                         </div>
                                         <div class="">
-                                         
+                                         <i class="fa fa-plus"></i>
                                         </div>
                                         
                                         

@@ -1,5 +1,5 @@
 <?php
-$levelStop=3;
+$levelStop=7;
 $startLevel++;
 ?>
 <ul>
@@ -10,7 +10,7 @@ $startLevel++;
   ?>
   @foreach($childs as $child)
   <li>
-    <a href="{{ route('addMatrix4x3.find',$child->positionId) }}" style="color: blue">
+    <a href="{{ route('addMatrix4x7.find',$child->positionId) }}" style="color: blue">
       <div class="container-fluid">
         <div class="text-center" >
           <i class="fa fa-user fa-2x user-icon"></i>
@@ -23,17 +23,17 @@ $startLevel++;
       </div>
     </a>
     <?php
-    $chaildUsers=\App\Helper\Helper::membersFourIntoThree($child->positionId);
+    $chaildUsers=\App\Helper\Helper::membersFourIntoSeven($child->positionId);
     ?>
     @if(count($chaildUsers)>0)
       @if($startLevel==$levelStop)
       @else
-      @include('user.additionalMatrix.child',['childs' => $chaildUsers,'myReferl'=>$myReferl])
+      @include('user.additionalMatrix4x7.child',['childs' => $chaildUsers,'myReferl'=>$myReferl])
       @endif
       @else
       @if($startLevel==$levelStop)
       @else
-      @include('user.additionalMatrix.allNull',['user' => $child->positionId])
+      @include('user.additionalMatrix4x7.allNull',['user' => $child->positionId])
       @endif
     @endif
     <?php
@@ -42,6 +42,6 @@ $startLevel++;
   </li>
   @endforeach
   @for(;$b<$perb;$b++)
-  @include('user.additionalMatrix.null',['user' => $child->placement])
+  @include('user.additionalMatrix4x7.null',['user' => $child->placement])
   @endfor
 </ul>

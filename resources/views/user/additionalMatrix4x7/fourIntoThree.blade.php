@@ -167,7 +167,7 @@ width: auto;
                     @if(count($users)>0)
                     @foreach($users as $uservalue)
                     <li id="level_{{$startLevel}}">
-                        <a href="{{ route('addMatrix4x3.find',$uservalue->positionId) }}" style="color: blue">
+                        <a href="{{ route('addMatrix4x7.find',$uservalue->positionId) }}" style="color: blue">
                             <div class="container-fluid">
                                 <div class="text-center" >
                                     <i class="fa fa-user fa-2x user-icon"></i>
@@ -179,17 +179,17 @@ width: auto;
                         </a>
                        <?php
                         
-                        $chaildUsers=\App\Helper\Helper::membersFourIntoThree($uservalue->positionId);
+                        $chaildUsers=\App\Helper\Helper::membersFourIntoSeven($uservalue->positionId);
                         $c=0;
                          $j=0;
                         ?>
                         @if(count($chaildUsers) > 0)
                        
-                        @include('user.additionalMatrix.child',['childs' => $chaildUsers,'myReferl'=>$uservalue->positionId])
+                        @include('user.additionalMatrix4x7.child',['childs' => $chaildUsers,'myReferl'=>$uservalue->positionId])
         
                         @else
                        
-                        @include('user.additionalMatrix.allNull',['user' => $uservalue->positionId])
+                        @include('user.additionalMatrix4x7.allNull',['user' => $uservalue->positionId])
                        
                         @endif
      
@@ -200,13 +200,13 @@ width: auto;
                 ?>
                 @endforeach
                 @for(;$i<$per;$i++)
-                @include('user.additionalMatrix.null',['user' => $user->positionId])
+                @include('user.additionalMatrix4x7.null',['user' => $user->positionId])
                 @endfor
                 
                 @else
                 <?php $a=1; ?>
                 @for(;$a<=$per;$a++)
-                @include('user.additionalMatrix.null',['user' => $user->positionId])
+                @include('user.additionalMatrix4x7.null',['user' => $user->positionId])
                 @endfor
                 @endif
             </ul>

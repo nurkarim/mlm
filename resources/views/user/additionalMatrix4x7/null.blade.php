@@ -1,5 +1,5 @@
  <li>
-                             <a href="#" style="color: black" data-toggle="modal" data-target="#modal" onclick="loadModal('{{route('addMatrix4x3.create',$user)}}')">
+                             <a href="#" style="color: black" data-toggle="modal" data-target="#modal" onclick="loadModal('{{route('addMatrix4x7.create',$user)}}')">
 
                                     <div class="container-fluid">
                                         <div class="text-center" >

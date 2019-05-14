@@ -10,7 +10,7 @@ use App\Models\Transaction;
 use App\Models\ReferralCommission;
 use Auth;
 use DB;
-class AdditionalMatrixController extends Controller
+class AdditionalMatrix4x7Controller extends Controller
 {
 
 	public $latestLevel;
@@ -19,55 +19,55 @@ class AdditionalMatrixController extends Controller
     public function index()
     {
     	
-    	return view('user.additionalMatrix.index');
+    	return view('user.additionalMatrix4x7.index');
     }
 
-    public function view4x3(Request $request)
+    public function viewMatrix(Request $request)
     {
     	try {
-    	
+    		
         $pid=self::positionID('P',5);
-        $check=AdditionalMatrix::where('user_id',Auth::id())->first();
+        $check=AdditionalMatrixFourIntoSeven::where('user_id',Auth::id())->first();
         if ($check) {
             
         }else{
-            $save=AdditionalMatrix::create([
+            $save=AdditionalMatrixFourIntoSeven::create([
                 'referral_id'=>1,
                 'placement_id'=>1,
                 'user_id'=>Auth::id(),
                 'positionId'=>$pid,
             ]);
         }
-        $user=AdditionalMatrix::where('user_id',Auth::id())->first();
-        $users=AdditionalMatrix::where('placement',$user->positionId)->get();
-    	return view('user.additionalMatrix.fourIntoThree',compact('users','user'));
+        $user=AdditionalMatrixFourIntoSeven::where('user_id',Auth::id())->first();
+        $users=AdditionalMatrixFourIntoSeven::where('placement',$user->positionId)->get();
+    	return view('user.additionalMatrix4x7.fourIntoThree',compact('users','user'));
     	} catch (Exception $e) {
     		
     	}
     } 
 
-    public function findFourIntoThree($id)
+    public function show($id)
     {
     	try {
-    	$user=AdditionalMatrix::where('positionId',$id)->first();
-        $users=AdditionalMatrix::where('placement',$id)->get();
-    	return view('user.additionalMatrix.fourIntoThree',compact('users','user'));
+    	$user=AdditionalMatrixFourIntoSeven::where('positionId',$id)->first();
+        $users=AdditionalMatrixFourIntoSeven::where('placement',$id)->get();
+    	return view('user.additionalMatrix4x7.fourIntoThree',compact('users','user'));
     	} catch (Exception $e) {
     		
     	}
     }
 
-    public function createFourIntoThree($id)
+    public function create($id)
     {
-    	$user=AdditionalMatrix::where('positionId',$id)->first();
-    	return view('user.additionalMatrix.addMatrix',compact('user'));
+    	$user=AdditionalMatrixFourIntoSeven::where('positionId',$id)->first();
+    	return view('user.additionalMatrix4x7.addMatrix',compact('user'));
     }
-    public function storeFourIntoThree(Request $request)
+    public function store(Request $request)
     {
     	try {
 
     		DB::beginTransaction();
-    		if (Auth::user()->funds_amount < 5) {
+    		if (Auth::user()->funds_amount < 15) {
             $request->session()->flash('error', 'Sorry! Please add funds to your wallet.');
                      return back();
             }
@@ -88,7 +88,7 @@ class AdditionalMatrixController extends Controller
     		// 	return back();
     		// }
             $pid=self::positionID('P',5);
-    		$save=AdditionalMatrix::create([
+    		$save=AdditionalMatrixFourIntoSeven::create([
     			'referral_id'=>Auth::id(),
     			'placement_id'=>$referral->id,
     			'user_id'=>$user->id,
@@ -101,14 +101,14 @@ class AdditionalMatrixController extends Controller
             Transaction::create([
                     'user_id'=>Auth::id(),
                     'type'=>5,
-                    'note'=>'Buying Additional Matrix Position 4:3',
+                    'note'=>'Buying Additional Matrix Position 4:7',
                     'amount'=>$amount,
                     'total'=>$amount,
                     'from'=>'Funds Wallet',
                     'to'=>'Admin',
                     'status'=>1,
                     ]);
-    			self::matrixPayout(5,$save->positionId);
+    			self::matrixPayout(15,$save->positionId);
                 // self::checkLevel($save->positionId, $request->referral_name, 1);
     			$request->session()->flash('success', 'Buying position successfully');
     		}else{
@@ -128,7 +128,7 @@ class AdditionalMatrixController extends Controller
     public static function positionID($prefix,$id_length)
     {
 
-        $result=DB::select('select MAX(positionId) as `id` from `additional_matrix_4x3`');
+        $result=DB::select('select MAX(positionId) as `id` from `additional_matrix_4x7`');
         $max_id=$result[0]->id;
         //print $max_id."<br/>";
         $prefix_length=strlen($prefix);
@@ -151,7 +151,7 @@ class AdditionalMatrixController extends Controller
     public function checkLevel($uid, $referId, $i)
     {
 
-        $user = AdditionalMatrix::where('positionId',$uid)->first();
+        $user = AdditionalMatrixFourIntoSeven::where('positionId',$uid)->first();
         if ($user) {
 
             if ($referId == $user->placement) {
@@ -165,9 +165,9 @@ class AdditionalMatrixController extends Controller
 
     public function matrixMemberSelect($id, $level)
     {
-        $user = AdditionalMatrix::where('positionId',$id)->first();
+        $user = AdditionalMatrixFourIntoSeven::where('positionId',$id)->first();
         if ($user) {
-            $use = AdditionalMatrix::where('placement',$user->placement)->first();
+            $use = AdditionalMatrixFourIntoSeven::where('placement',$user->placement)->first();
             if($use){
 
             $this->array[] = [
@@ -176,7 +176,7 @@ class AdditionalMatrixController extends Controller
                 'user_id' => $user->placement_id,
             ];
         }
-            if ($level <= 3) {
+            if ($level <= 7) {
                 $level++;
                 self::matrixMemberSelect($user->placement, $level);
             }
@@ -191,13 +191,21 @@ class AdditionalMatrixController extends Controller
             ['level_id'=>1,
             	'percent'=>0,
             ],['level_id'=>2,
-            	'percent'=>1.25,
+            	'percent'=>3.125,
             ],['level_id'=>3,
-            	'percent'=>3.75,
+            	'percent'=>1.5625,
+            ],['level_id'=>4,
+            	'percent'=>1.5625,
+            ],['level_id'=>5,
+            	'percent'=>0.9765625,
+            ],['level_id'=>6,
+            	'percent'=>1.220703125,
+            ],['level_id'=>7,
+            	'percent'=>6.408691406,
             ]
       ];
       $collect = collect($levelSettings);
-      $joinUser=AdditionalMatrix::where('positionId',$user_ID)->first();
+      $joinUser=AdditionalMatrixFourIntoSeven::where('positionId',$user_ID)->first();
       foreach ($this->array as $key => $value) {
        self::checkLevel($user_ID, $value['placementID'], 1);
        $getLev = $collect->where('level_id', $this->latestLevel)->first();
@@ -207,7 +215,7 @@ class AdditionalMatrixController extends Controller
          Transaction::create([
           'user_id'=>$value['user_id'],
           'type'=>2,
-          'note'=>'Earning additional matrix payout 4:3',
+          'note'=>'Earning additional matrix payout 4:7',
           'amount'=>$getAmount,
           'total'=>$getAmount,
           'from'=>'Admin',

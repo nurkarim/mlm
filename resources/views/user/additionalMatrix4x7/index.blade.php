@@ -21,7 +21,7 @@
   <a href="{{ route('additionalMatrix.4x3') }}" class="btn btn-info col-md-6">4 x 3</a>
 </div>
 <div class="col-md-12 m-t-10">
-  <a href="{{ route('additionalMatrix.4x7') }}" class="btn btn-success col-md-6">4 x 7</a>
+  <a href="#" class="btn btn-success col-md-6">4 x 7</a>
   </div>
 </div>
 </div>

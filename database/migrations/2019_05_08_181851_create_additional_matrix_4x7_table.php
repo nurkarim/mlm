@@ -18,6 +18,8 @@ class CreateAdditionalMatrix4x7Table extends Migration
             $table->integer('referral_id')->unsigned();
             $table->integer('placement_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->string('positionId');
+            $table->string('placement')->nullable();
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();

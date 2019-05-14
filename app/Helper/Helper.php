@@ -2,6 +2,7 @@
 namespace App\Helper;
 use App\User;
 use App\AdditionalMatrix;
+use App\AdditionalMatrixFourIntoSeven;
 class Helper 
 {
 	
@@ -35,7 +36,12 @@ class Helper
     } 
     public static function membersFourIntoThree($id)
     {
-        return $dd=AdditionalMatrix::where('placement_id',$id)->get();
+        return $dd=AdditionalMatrix::where('placement',$id)->get();
+    }
+
+    public static function membersFourIntoSeven($id)
+    {
+        return $dd=AdditionalMatrixFourIntoSeven::where('placement',$id)->get();
     }
 
 
