@@ -57,4 +57,6 @@ Route::get('passwordChange', 'AdminController@passwordChange')->name('admin.pass
 Route::post('passwordChange', 'AdminController@passwordChangeSave')->name('admin.passwordChangeSave');
 
 Route::get('genealogy/{user_name}', 'MemberController@genealogy')->name('admin.genealogy');
+Route::get('usersDownload', 'MemberController@export')->name('adminUsers.download');
+
 });

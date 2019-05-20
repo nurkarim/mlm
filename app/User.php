@@ -43,6 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function refferralCount()
+    {
+        return $this->hasMany(User::class,'referral_id','id');
+    }
+
     public function refferral()
     {
         return $this->belongsTo(User::class,'referral_id','id');

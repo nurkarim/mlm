@@ -7,7 +7,10 @@
 		
 	</div>
 	<div class="box-body form-horizental">
-	<div class="table-responsive">
+		<div class="col-md-12">
+			<a class="btn btn-success pull-right" href="{{ route('adminUsers.download') }}">Download</a>
+		</div>
+	<div class="table-responsive col-md-12" style="margin-top: 10px;">
 	<table id="datatable" class="table table-bordered box-table">
 		<thead>
 			<tr>

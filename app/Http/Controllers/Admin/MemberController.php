@@ -6,12 +6,28 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Mail\ApprovedAccount;
+use App\Models\ReferralCommission;
+use Maatwebsite\Excel\Facades\Excel;
 use Auth;
 use DB;
 use Mail;
-use App\Models\ReferralCommission;
 class MemberController extends Controller
 {
+
+     public function export() 
+    {
+         $data = User::get();
+                 Excel::create('users', function ($excel) use ($data) {
+                 $excel->sheet("userList", function ($sheet) use ($data) {
+                            $sheet->loadView("admin.members.export")
+                            ->with('data', $data);
+                            $sheet->setFontFamily('Arial');
+                            $sheet->setAutoSize(true);
+                            
+                        });
+            
+        })->download();
+    }
 
     public function genealogy($slug)
     {
