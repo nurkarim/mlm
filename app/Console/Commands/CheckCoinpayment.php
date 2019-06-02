@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\CoinpaymentTransaction;
-
+use Log;
 class CheckCoinpayment extends Command
 {
     /**
@@ -40,7 +40,11 @@ class CheckCoinpayment extends Command
     {
         $data=CoinpaymentTransaction::where('status',0)->orWhere('status',1)->get();
         foreach ($data as $key => $value) {
+            if ($value->payment_id!=null) {
+            
             CoinpaymentTransaction::updateTransaction($value->payment_id);
+
+            }
         }
 
         CoinpaymentTransaction::updateFundsFromCoin();
