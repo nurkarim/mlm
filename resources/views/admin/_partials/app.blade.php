@@ -59,6 +59,7 @@
       <div class="box-header with-border">
          <i class="fa fa-users"></i>
          <h4 class="box-title">Inactive Members</h4>
+         <a href="{{ route('adminUsers.updateAll') }}" onclick="return confirm('Are you sure you want to approve all users?');" class="btn btn-sm btn-info pull-right">Approved All</a>
       </div>
       <div class="box-body">
  <table id="datatable" class="table table-bordered box-table">

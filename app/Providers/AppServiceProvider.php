@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('username', function($attribute, $value, $parameters) {
             $user=User::where('user_name',$value)->count();
             return $user > 0;
-        });
+        }); 
+       
     }
 }

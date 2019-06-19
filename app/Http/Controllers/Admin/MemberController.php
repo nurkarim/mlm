@@ -83,4 +83,16 @@ class MemberController extends Controller
             return back();
         }
     }
+
+    public function updateAll()
+    {
+        $users=User::where('status',0)->get();
+        foreach ($users as $user) {
+            $user->status=1;
+            $user->save();
+        }
+        return back();
+    }
+
+
 }
